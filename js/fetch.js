@@ -12,11 +12,10 @@ function GetAllPelanggan(results){
 
 function isiRow(value){
     let content = 
-    isiTabel.replace("#Nama_Pelanggan#", value.biodata.nama)
-            .replace("#NOMER_TELEPON#", value.biodata.phone_number)
-            .replace("#JABATAN#", value.biodata.jabatan)
-            .replace("#Alamat#", value.location)
-            .replace("#Email#", value.checkin)
+    isiTabel.replace("#NAMA#", value.nama)
+            .replace("#NOMER_TELEPON#", value.phone_number)
+            .replace("#ALAMAT#", value.alamat)
+            .replace("#EMAIL#", value.email)
             .replace("#WARNA#", getRandomColor())
             .replace(/#WARNALOGO#/g, getRandomColorName());
         addInner("iniTabel", content);

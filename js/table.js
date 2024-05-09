@@ -7,18 +7,18 @@ export let isiTabel =
                   <input class="w-4 h-4 bg-white rounded" type="checkbox">
                 </div>
                 <div class="w-auto p-2">
-                  <p class="text-xs font-semibold text-coolGray-800">#ID_Pelanggan#</p>
+                  <p class="text-xs font-semibold text-coolGray-800">#ID#</p>
                 </div>
               </div>
             </th>
             <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-800 text-left">
-              #Nama_Pelanggan#</th>
+              #NAMA#</th>
             <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-800 text-center">
               #NOMER_TELEPON#</th>
             <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-500 text-left">
-              #Alamat#</th>
+              #AlAMAT#</th>
             <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-#col#-500 text-left">
-              #Email#</th>
+              #EMAIL#</th>
             <th class="whitespace-nowrap pr-4 bg-white text-sm font-medium text-coolGray-800">
               <svg class="ml-auto" width="16" height="16" viewbox="0 0 16 16" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
