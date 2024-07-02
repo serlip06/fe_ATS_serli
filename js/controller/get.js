@@ -11,6 +11,11 @@ function isiRow(value){
             .replace("#PHONE_NUMBER#", value.phone_number)
             .replace("#ALAMAT#", value.alamat )
             .replace("#EMAIL#", value.email)
+            .replace("#NAMA_PRODUK#", value.nama_produk)
+            .replace("#DESKRIPSI#", value.deskripsi)
+            .replace("#HARGA#", value.harga)
+            .replace("#STOK#", value.harga)
+            .replace("#GAMBAR#", value.gambar)
             .replace("#WARNA#", getRandomColor())
             .replace(/#WARNALOGO#/g, getRandomColorName());
         addInner("iniTabel", content);
