@@ -11,7 +11,6 @@ function pushData(){
         nama : getValue(getValue("nama")),
         phone_number : getValue(getValue("phone_number")),
         alamat : getValue("alamat"),
-        checkin : getValue("checkin"),
         phone_number : getValue("phone_number"),
         email : getValue("email"),
         nama_produk : getValue("nama_produk"),
