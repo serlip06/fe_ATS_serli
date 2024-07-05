@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../shuffle-for-tailwind.png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="../js/main.js"></script>
-  <script type="module" src="../js/fetch.js"></script>
+  <script type="module" src="../js/fetchproduk.js"></script>
 </head>
 <body>
    <!-- bagian ini sidebarnya  -->
@@ -259,16 +259,15 @@
                     <table class="w-full" id="iniTabel">
                       <thead>
                         <tr class="whitespace-nowrap h-11 bg-coolGray-50 bg-opacity-80 border-b border-coolGray-100">
-                          <th class="px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">
-                            <div class="flex items-center">
-                              <input class="mr-3 w-4 h-4 bg-white rounded" type="checkbox">
-                              <p> ID </p>
-                            </div>
-                          </th>
-                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">NAMA</th>
+                          <!-- <th class="px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">
+                            <div class="flex-shrink-0 w-10 h-10 ">
+                                        <img class="w-10 h-10 rounded-full" src="https://i.pinimg.com/564x/83/9d/9e/839d9ea5648fb8dcc6ed89ef3b145616.jpg" alt="">
+                                    </div>
+                          </th> -->
+                          <!-- <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">NAMA</th>
                           <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">PHONE NUMBER</th>
-                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">ALAMAT</th>
-                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">EMAIL</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">ALAMAT</th> -->
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">GAMBAR</th>
                           <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">NAMA PRODUK</th>
                           <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">DESKRIPSI</th>
                           <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">HARGA</th>
@@ -286,18 +285,12 @@
                                         <img class="w-10 h-10 rounded-full" src="https://i.pinimg.com/564x/83/9d/9e/839d9ea5648fb8dcc6ed89ef3b145616.jpg" alt="">
                                     </div>
                                     <div class="ml-4 ">
-                                        <div class=" text-sm font-medium leading-5 text-gray-900 ">#ID#</div>
+                                        <div class=" text-sm font-medium leading-5 text-gray-900 ">##NAMA_PRODUK#</div>
                                     </div>
                                 </div>
                             </td>
-                            <td class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-800 text-left">#NAMA#</td>
-                            <td class="px-6 py-4 whitespace-no-wrap bg-white text-sm font-medium text-coolGray-800 text-center">#PHONE_NUMBER#</td>
-                             <td class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-500 text-left">#ALAMAT#</td>
-                            <td class="px-6 py-4 whitespace-no-wrap bg-white  text-sm font-medium coolGray-500">
-                                <a href="#">#EMAIL#</a>
-                            </td>
-                            <td class="px-6 py-4 whitespace-no-wrap bg-white text-sm font-medium text-coolGray-500">#NAMA_PRODUK#</td>
-                              <td class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-500 text-left">#DESKRIPSI#</td>
+                           
+                            <td class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-500 text-left">#DESKRIPSI#</td>
                             <td class="px-6 py-4 whitespace-nowrap  bg-white text-sm font-medium text-coolGray-500">#HARGA#</td>
                             <td class="px-6 py-4 whitespace-nowrap  bg-white text-sm font-medium text-coolGray-500">#STOK#</td>
                            <td class="whitespace-nowrap pr-4 bg-white text-sm font-medium text-coolGray-800">

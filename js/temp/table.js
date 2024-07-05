@@ -3,9 +3,6 @@ export let isiTabel =
     <tr class="border-b border-gray-200 ">
                             <td class="px-6 py-4 whitespace-no-wrap bg-white">
                                 <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-10 h-10 ">
-                                        <img class="w-10 h-10 rounded-full" src="https://i.pinimg.com/564x/83/9d/9e/839d9ea5648fb8dcc6ed89ef3b145616.jpg" alt="">
-                                    </div>
                                     <div class="ml-4 ">
                                         <div class=" text-sm font-medium leading-5 text-gray-900 ">#ID#</div>
                                     </div>
