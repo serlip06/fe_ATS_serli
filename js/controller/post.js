@@ -27,7 +27,7 @@ function pushData() {
         email: getValue("email")
     };
 
-    postData('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/insert',urlPOST, data, AmbilResponse);
+    postData(urlPOST, data, AmbilResponse);
 }
 
 document.getElementById('submit_button').addEventListener('click', function(event) {
