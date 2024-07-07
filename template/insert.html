@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Homepage_admin</title>
+    <title>Landingpageform</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -63,14 +63,14 @@
                             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                                 <div class="md:col-span-5">
                                     <form id="personal_details_form">
-                                        <div id="full_name_error_message" class="error">
+                                        <div id="full_name_error_message" class="error" style="display: none;">
                                             <div class="error-icon">⚠️</div>
                                             <span>Nama hanya boleh berisi huruf!</span>
                                         </div>
                                         <label for="full_name">Nama</label>
                                         <input id="full_name" type="text" name="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
 
-                                        <div id="phone_number_error_message" class="error">
+                                        <div id="phone_number_error_message" class="error" style="display: none;">
                                             <div class="error-icon">⚠️</div>
                                             <span>Nomor HP hanya boleh berisi angka!</span>
                                         </div>
@@ -85,7 +85,31 @@
 
                                         <div class="md:col-span-5 text-right">
                                             <div class="inline-flex items-end">
-                                                <button id="submit_button" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                                                <button id="submit_button" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Next</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <!-- Form kedua, tersembunyi secara default -->
+                                    <form id="additional_details_form" style="display: none;">
+                                        <label for="nama_produk">Nama Produk</label>
+                                        <input id="nama_produk" type="text" name="product_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+
+                                        <label for="deskripsi">Deskripsi</label>
+                                        <input id="deskripsi" type="text" name="description" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+
+                                        <label for="harga">Harga</label>
+                                        <input id="harga" type="number" name="price" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+
+                                        <label for="stok">Stok</label>
+                                        <input id="stok" type="number" name="stock" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+
+                                        <label for="gambar">URL Gambar</label>
+                                        <input id="gambar" type="url" name="image_url" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+
+                                        <div class="md:col-span-5 text-right">
+                                            <div class="inline-flex items-end">
+                                                <button id="final_submit_button" type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Submit</button>
                                             </div>
                                         </div>
                                     </form>
@@ -94,11 +118,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <a href="https://www.buymeacoffee.com/dgauderman" target="_blank" class="md:absolute bottom-0 right-0 p-4 float-right">
-                <img src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-3.svg" alt="Buy Me A Coffee" class="transition-all rounded-full w-14 -rotate-45 hover:shadow-sm shadow-lg ring hover:ring-4 ring-white">
-            </a>
+                <a href="https://www.buymeacoffee.com/dgauderman" target="_blank" class="md:absolute bottom-0 right-0 p-4 float-right">
+                    <img src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-3.svg" alt="Buy Me A Coffee" class="transition-all rounded-full w-14 -rotate-45 hover:shadow-sm shadow-lg ring hover:ring-4 ring-white">
+                </a>
+            </div>
         </div>
     </div>
 
@@ -109,7 +133,10 @@
             const phoneNumberInput = document.getElementById('phone_number');
             const phoneNumberErrorMessage = document.getElementById('phone_number_error_message');
             const form = document.getElementById('personal_details_form');
-
+            const additionalForm = document.getElementById('additional_details_form');
+        
+            let formData = {};
+        
             fullNameInput.addEventListener('input', function() {
                 const value = fullNameInput.value;
                 if (/[^a-zA-Z\s]/.test(value)) {
@@ -118,7 +145,7 @@
                     fullNameErrorMessage.style.display = 'none';
                 }
             });
-
+        
             phoneNumberInput.addEventListener('input', function() {
                 const value = phoneNumberInput.value;
                 if (/[^0-9]/.test(value)) {
@@ -127,35 +154,55 @@
                     phoneNumberErrorMessage.style.display = 'none';
                 }
             });
-
+        
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
-
+        
                 const fullName = fullNameInput.value;
                 const phoneNumber = phoneNumberInput.value;
-
+        
                 if (/[^a-zA-Z\s]/.test(fullName) || /[^0-9]/.test(phoneNumber)) {
                     alert('Mohon perbaiki kesalahan pada form sebelum submit.');
                     return;
                 }
-
-                const data = {
+        
+                formData = {
                     nama: fullName,
                     phone_number: phoneNumber,
                     alamat: document.getElementById('alamat').value,
                     email: document.getElementById('email').value
                 };
-
+        
+                // Sembunyikan form pertama dan tampilkan form kedua
+                form.style.display = 'none';
+                additionalForm.style.display = 'block';
+            });
+        
+            additionalForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+        
+                const finalData = {
+                    ...formData,
+                    product_name: document.getElementById('nama_produk').value,
+                    description: document.getElementById('deskripsi').value,
+                    price: document.getElementById('harga').value,
+                    stock: document.getElementById('stok').value,
+                    image_url: document.getElementById('gambar').value
+                };
+        
                 fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/insert', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(finalData)
                 }).then(response => {
                     if (response.ok) {
                         alert('Data berhasil dikirim!');
                         form.reset();
+                        additionalForm.reset();
+                        form.style.display = 'block';
+                        additionalForm.style.display = 'none';
                     } else {
                         alert('Terjadi kesalahan saat mengirim data.');
                     }
@@ -165,6 +212,7 @@
             });
         });
     </script>
+        
     <script type="module" src="../js/controller/post.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../js/charts-demo.js"></script> 
