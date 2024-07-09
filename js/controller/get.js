@@ -11,8 +11,8 @@ function isiRow(value){
             .replace("#PHONE_NUMBER#", value.phone_number)
             .replace("#ALAMAT#", value.alamat )
             .replace("#EMAIL#", value.email)
-            // .replace("#IDEDIT#", value._id)
-            // .replace("#IDHAPUS#", value._id)
+            .replace("#IDEDIT#", value._id)
+            .replace("#IDHAPUS#", value._id)
             .replace("#WARNA#", getRandomColor())
             .replace(/#WARNALOGO#/g, getRandomColorName());
         addInner("iniTabel", content);
