@@ -181,11 +181,11 @@
         
                 const finalData = {
                     ...formData,
-                    product_name: document.getElementById('nama_produk').value,
-                    description: document.getElementById('deskripsi').value,
-                    price: document.getElementById('harga').value,
-                    stock: document.getElementById('stok').value,
-                    image_url: document.getElementById('gambar').value
+                    nama_produk: document.getElementById('nama_produk').value,
+                    deskripsi: document.getElementById('deskripsi').value,
+                    harga: document.getElementById('harga').value,
+                    stok: document.getElementById('stok').value,
+                    gambar: document.getElementById('gambar').value
                 };
         
                 fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/insert', {

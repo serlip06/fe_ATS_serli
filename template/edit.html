@@ -130,7 +130,6 @@
             </div>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const fullNameInput = document.getElementById('full_name');
@@ -139,9 +138,9 @@
             const phoneNumberErrorMessage = document.getElementById('phone_number_error_message');
             const form = document.getElementById('personal_details_form');
             const additionalForm = document.getElementById('additional_details_form');
-        
+
             let formData = {};
-        
+
             fullNameInput.addEventListener('input', function() {
                 const value = fullNameInput.value;
                 if (/[^a-zA-Z\s]/.test(value)) {
@@ -150,7 +149,7 @@
                     fullNameErrorMessage.style.display = 'none';
                 }
             });
-        
+
             phoneNumberInput.addEventListener('input', function() {
                 const value = phoneNumberInput.value;
                 if (/[^0-9]/.test(value)) {
@@ -159,42 +158,43 @@
                     phoneNumberErrorMessage.style.display = 'none';
                 }
             });
-        
+
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
-        
+
                 const fullName = fullNameInput.value;
                 const phoneNumber = phoneNumberInput.value;
-        
+
                 if (/[^a-zA-Z\s]/.test(fullName) || /[^0-9]/.test(phoneNumber)) {
                     alert('Mohon perbaiki kesalahan pada form sebelum submit.');
                     return;
                 }
-        
+
                 formData = {
                     nama: fullName,
                     phone_number: phoneNumber,
                     alamat: document.getElementById('alamat').value,
                     email: document.getElementById('email').value
                 };
-        
-               
+
+                form.style.display = 'none';
+                additionalForm.style.display = 'block';
             });
-        
+
             additionalForm.addEventListener('submit', function(event) {
                 event.preventDefault();
-        
+
                 const finalData = {
                     ...formData,
-                    product_name: document.getElementById('nama_produk').value,
-                    description: document.getElementById('deskripsi').value,
-                    price: document.getElementById('harga').value,
-                    stock: document.getElementById('stok').value,
-                    image_url: document.getElementById('gambar').value
+                    nama_produk: document.getElementById('nama_produk').value,
+                    deskripsi: document.getElementById('deskripsi').value,
+                    harga: document.getElementById('harga').value,
+                    stok: document.getElementById('stok').value,
+                    gambar: document.getElementById('gambar').value
                 };
-        
-                fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/insert', {
-                    method: 'POST',
+
+                fetch("https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/customer/" + customerId, {
+                    method: 'POST', // Mengubah GET menjadi POST untuk pengiriman data
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -213,11 +213,42 @@
                     alert('Terjadi kesalahan: ' + error.message);
                 });
             });
+
+            // Fetch data and populate form
+            const urlParams = new URLSearchParams(window.location.search);
+            const customerId = urlParams.get("customerId");
+
+            fetch("https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/customer/" + customerId, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                isiData(data);
+            })
+            .catch(error => {
+                console.error('Terjadi kesalahan:', error);
+            });
+
+            function isiData(results) {
+                document.getElementById('nama').value = results.nama;
+                document.getElementById('phone_number').value = results.phone_number;
+                document.getElementById('alamat').value = results.alamat;
+                document.getElementById('email').value = results.email;
+                document.getElementById('nama_produk').value = results.nama_produk;
+                document.getElementById('deskripsi').value = results.deskripsi;
+                document.getElementById('harga').value = results.harga;
+                document.getElementById('stok').value = results.stok;
+                document.getElementById('gambar').value = results.gambar;
+            }
         });
     </script>
-        
-    <script type="module" src="../js/controller/post.js"></script> 
+    <script type="module" src="../js/fetchedit.js"></script>
+    <script type="module" src="../js/controller/put.js"></script>   
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../js/charts-demo.js"></script> 
+    <!-- <script type="module" src="../js/controller/post.js"></script>  -->
 </body>
 </html>

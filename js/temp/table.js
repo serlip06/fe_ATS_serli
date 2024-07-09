@@ -17,7 +17,7 @@ export let isiTabel =
                            <td class="whitespace-nowrap pr-4 bg-white text-sm font-medium text-coolGray-800">
                             <a class="inline-block px-3 py-1 bg-yellow-500 text-white rounded-lg cursor-pointer shadow-md active:scale-95 transition-transform" href="edit.html"?costumberId=#EDIT#" type="button" >Edit</a>
                             <span class="mx-1">|</span>
-                            <button class="inline-block px-3 py-1 bg-red-500 text-white rounded-lg cursor-pointer shadow-md active:scale-95 transition-transform" type="button" id="del_button" onclick"deleteData('#IDHAPUS')">Delete</button>
+                            <button class="inline-block px-3 py-1 bg-red-500 text-white rounded-lg cursor-pointer shadow-md active:scale-95 transition-transform" type="button" id="del_button" onclick"deleteData('#IDHAPUS#')">Delete</button>
                            </td>
                           <td class="whitespace-nowrap pr-4 bg-white text-sm font-medium text-coolGray-800">
                             <svg class="ml-auto" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
