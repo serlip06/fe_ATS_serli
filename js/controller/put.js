@@ -1,14 +1,17 @@
 import { putData } from "https://bukulapak.github.io/api/process.js";
 import { onClick, getValue } from "https://bukulapak.github.io/element/process.js";
-import { urlPUT, AmbilResponse } from "../config/url_put.js;";
+import { urlPUT, AmbilResponse } from "../config/url_put.js";
+
+// let formData = {};
+
 
 let formData = {};
 
 function validatePersonalDetails() {
-    const fullName = getValue("full_name");
+    const nama = getValue("nama");
     const phoneNumber = getValue("phone_number");
 
-    if (/[^a-zA-Z\s]/.test(fullName)) {
+    if (/[^a-zA-Z\s]/.test(nama)) {
         document.getElementById('full_name_error_message').style.display = 'flex';
         return false;
     } else {
@@ -23,7 +26,7 @@ function validatePersonalDetails() {
     }
 
     formData = {
-        nama: fullName,
+        nama: nama,
         phone_number: phoneNumber,
         alamat: getValue("alamat"),
         email: getValue("email").split(",")
@@ -35,7 +38,7 @@ function validatePersonalDetails() {
 function validateProductDetails() {
     formData.nama_produk = getValue("nama_produk");
     formData.deskripsi = getValue("deskripsi");
-    formData.harga =parseInt(getValue("harga"), 10);
+    formData.harga = parseInt(getValue("harga"), 10);
     formData.stok = getValue("stok");
     formData.gambar = getValue("gambar");
 

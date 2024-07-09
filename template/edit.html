@@ -73,7 +73,7 @@
                                             <span>Nama hanya boleh berisi huruf!</span>
                                         </div>
                                         <label for="full_name">Nama</label>
-                                        <input id="full_name" type="text" name="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                        <input id="nama" type="text" name="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
 
                                         <div id="phone_number_error_message" class="error" style="display: none;">
                                             <div class="error-icon">⚠️</div>
@@ -130,17 +130,18 @@
             </div>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const fullNameInput = document.getElementById('full_name');
+            const fullNameInput = document.getElementById('nama'); // Disesuaikan dengan id yang benar
             const fullNameErrorMessage = document.getElementById('full_name_error_message');
             const phoneNumberInput = document.getElementById('phone_number');
             const phoneNumberErrorMessage = document.getElementById('phone_number_error_message');
             const form = document.getElementById('personal_details_form');
             const additionalForm = document.getElementById('additional_details_form');
-
+        
             let formData = {};
-
+        
             fullNameInput.addEventListener('input', function() {
                 const value = fullNameInput.value;
                 if (/[^a-zA-Z\s]/.test(value)) {
@@ -149,7 +150,7 @@
                     fullNameErrorMessage.style.display = 'none';
                 }
             });
-
+        
             phoneNumberInput.addEventListener('input', function() {
                 const value = phoneNumberInput.value;
                 if (/[^0-9]/.test(value)) {
@@ -158,97 +159,69 @@
                     phoneNumberErrorMessage.style.display = 'none';
                 }
             });
-
+        
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
-
+        
                 const fullName = fullNameInput.value;
                 const phoneNumber = phoneNumberInput.value;
-
+        
                 if (/[^a-zA-Z\s]/.test(fullName) || /[^0-9]/.test(phoneNumber)) {
                     alert('Mohon perbaiki kesalahan pada form sebelum submit.');
                     return;
                 }
-
+        
                 formData = {
                     nama: fullName,
                     phone_number: phoneNumber,
                     alamat: document.getElementById('alamat').value,
                     email: document.getElementById('email').value
                 };
-
+        
                 form.style.display = 'none';
                 additionalForm.style.display = 'block';
             });
-
+        
             additionalForm.addEventListener('submit', function(event) {
                 event.preventDefault();
-
+        
                 const finalData = {
                     ...formData,
-                    nama_produk: document.getElementById('nama_produk').value,
-                    deskripsi: document.getElementById('deskripsi').value,
-                    harga: document.getElementById('harga').value,
-                    stok: document.getElementById('stok').value,
+                    product_name: document.getElementById('nama_produk').value,
+                    description: document.getElementById('deskripsi').value,
+                    price: document.getElementById('harga').value,
+                    stock: document.getElementById('stok').value,
                     gambar: document.getElementById('gambar').value
                 };
-
-                fetch("https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/customer/" + customerId, {
-                    method: 'POST', // Mengubah GET menjadi POST untuk pengiriman data
+        
+                fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/update/'+ customerId, {
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(finalData)
                 }).then(response => {
                     if (response.ok) {
-                        alert('Data berhasil dikirim!');
+                        alert('Data berhasil diperbarui!');
                         form.reset();
                         additionalForm.reset();
                         form.style.display = 'block';
                         additionalForm.style.display = 'none';
                     } else {
-                        alert('Terjadi kesalahan saat mengirim data.');
+                        alert('Terjadi kesalahan saat memperbarui data.');
                     }
                 }).catch(error => {
                     alert('Terjadi kesalahan: ' + error.message);
                 });
             });
-
-            // Fetch data and populate form
-            const urlParams = new URLSearchParams(window.location.search);
-            const customerId = urlParams.get("customerId");
-
-            fetch("https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/customer/" + customerId, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                isiData(data);
-            })
-            .catch(error => {
-                console.error('Terjadi kesalahan:', error);
-            });
-
-            function isiData(results) {
-                document.getElementById('nama').value = results.nama;
-                document.getElementById('phone_number').value = results.phone_number;
-                document.getElementById('alamat').value = results.alamat;
-                document.getElementById('email').value = results.email;
-                document.getElementById('nama_produk').value = results.nama_produk;
-                document.getElementById('deskripsi').value = results.deskripsi;
-                document.getElementById('harga').value = results.harga;
-                document.getElementById('stok').value = results.stok;
-                document.getElementById('gambar').value = results.gambar;
-            }
         });
     </script>
+   
+
     <script type="module" src="../js/fetchedit.js"></script>
     <script type="module" src="../js/controller/put.js"></script>   
+    <!-- <script type="module" src="../js/controller/post.js"></script>  -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../js/charts-demo.js"></script> 
-    <!-- <script type="module" src="../js/controller/post.js"></script>  -->
 </body>
 </html>
