@@ -224,7 +224,7 @@
 
             // Muat data customer jika ada customerId
             if (customerId) {
-                fetch(`https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/customer/${customerId}`)
+                fetch(`https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/customer/customerId=${customerId}`)
                     .then(response => response.json())
                     .then(data => {
                         fullNameInput.value = data.nama;

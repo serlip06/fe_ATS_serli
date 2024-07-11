@@ -29,8 +29,10 @@ function validatePersonalDetails() {
         nama: nama,
         phone_number: phoneNumber,
         alamat: getValue("alamat"),
-        email: getValue("email").split(",")
+        email: getValue("email").split(","),
     };
+    
+    putData(urlPUT, formData, AmbilResponse)
 
     return true;
 }
@@ -75,8 +77,8 @@ document.getElementById('submit_button').addEventListener('click', function(even
 document.getElementById('final_submit_button').addEventListener('click', function(event) {
     event.preventDefault();
     if (validateProductDetails()) {
-        pushData();
+        putData(urlPUT, data,AmbilResponse);
     }
 });
 
-onClick("button", pushData);
+onClick("button", validatePersonalDetails);

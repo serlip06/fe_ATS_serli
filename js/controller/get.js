@@ -5,6 +5,7 @@ export function GetAllPelanggan(results) {
     results.forEach(isiRow);
 }
 function isiRow(value){
+
     let content = 
     isiTabel.replace("#ID#", value._id)
             .replace("#NAMA#", value.nama)
