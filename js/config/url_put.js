@@ -1,5 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
-const customerId = urlParams.get('customerId');
+const customerId = urlParams.get('customerID');
 
 export let urlPUT = "https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/update/" + customerId;
 

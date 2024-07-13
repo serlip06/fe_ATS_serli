@@ -14,9 +14,9 @@ function pushData (){
         email : email.split(","),
         nama_produk : getValue("nama_produk"),
         deskripsi : getValue("deskripsi"),
-        harga : getValue("harga"),
-        gambar: getValue("gambar"),
-        stok : getValue("stok")
+        harga : parseInt(getValue("harga"), 10),
+        stok : getValue("stok"),
+        gambar : getValue("gambar")
 
     }
     putData(urlPUT,data,AmbilResponse)
