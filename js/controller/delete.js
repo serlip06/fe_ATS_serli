@@ -15,3 +15,9 @@ function deleteData(IDHAPUS) {
         })
         .catch(error => console.log('Error:', error));
 }
+
+function confirmDelete(IDHAPUS) {
+    if (confirm("Apakah ingin menghapus data ID " + IDHAPUS + "?")) {
+        deleteData(IDHAPUS);
+    }
+}
