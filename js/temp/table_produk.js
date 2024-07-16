@@ -15,7 +15,7 @@ export let iniTabel =
                               <td class="whitespace-nowrap pr-4 bg-white text-sm font-medium text-coolGray-800">
                             <a class="inline-block px-3 py-1 bg-yellow-500 text-white rounded-lg cursor-pointer shadow-md active:scale-95 transition-transform" type="button" href="edit.html?customerID=#IDEDIT#">Edit</a>
                             <span class="mx-1">|</span>
-                            <button class="inline-block px-3 py-1 bg-red-500 text-white rounded-lg cursor-pointer shadow-md active:scale-95 transition-transform" type="button" id="del_button" onclick="confirmDelete('#IDHAPUS#')">Delete</button>  
+                           
                            </td>
                         </td>
                         </tr> 
