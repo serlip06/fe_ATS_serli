@@ -24,7 +24,9 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="../js/main.js"></script>
     <script type="module" src="../js/fetchproduk.js"></script>
-    <script type="module" src="../js/controller/card.js"></script>
+    <script type="module" src="../js/temp/card.js"></script>
+    <script type="module" src="../js/temp/checkout.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
 </head>
 <body
@@ -46,8 +48,7 @@
                 </g>
             </svg>
             <div class="flex space-x-4">
-                <a href="pagemakan.html" class="font-semibold inline-block">Makanan</a>
-                <a href="pageminum.html" class="font-semibold inline-block">Minuman</a>
+                <a href="pagemakan.html" class="font-semibold inline-block">Makanan & Minuman</a>
             </div>
             
 
@@ -64,7 +65,7 @@
     </div>
     
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 ">
+    <div class=" ">
 
         <!-- CARD 1 -->
         <div class="flex flex-wrap justify-center" id="product-container">
@@ -73,7 +74,7 @@
                     <a href="#"></a>
                     <div class="relative">
                         <a href="#">
-                            <img class="w-full" src="https://images.pexels.com/photos/6086/food-salad-healthy-vegetables.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="Sunset in the mountains">
+                            <img id="gambarmakan"  class="w-full" src="https://images.pexels.com/photos/6086/food-salad-healthy-vegetables.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="Sunset in the mountains">
                             <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
                         </a>
                     </div>
