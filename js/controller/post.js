@@ -26,7 +26,7 @@ function validatePersonalDetails() {
         nama: fullName,
         phone_number: phoneNumber,
         alamat: getValue("alamat"),
-        email: getValue("email").split(",")
+        email: getValue("email")
     };
 
     return true;

@@ -18,4 +18,5 @@ function isiRow(value){
             .replace(/#WARNALOGO#/g, getRandomColorName());
         addInner("iniTabel", content);
 }
-
+    
+  
