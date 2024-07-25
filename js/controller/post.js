@@ -26,7 +26,7 @@ function validatePersonalDetails() {
         nama: fullName,
         phone_number: phoneNumber,
         alamat: getValue("alamat"),
-        email: getValue("email")
+        email: getValue("email").split(",")
     };
 
     return true;
@@ -47,9 +47,9 @@ function pushData() {
         .then(response => {
             if (response.ok) {
                 alert('Data berhasil dikirim!');
-                document.getElementById('personal_details_form').reset();
+                // document.getElementById('personal_details_form').reset();
                 document.getElementById('additional_details_form').reset();
-                document.getElementById('personal_details_form').style.display = 'block';
+                // document.getElementById('personal_details_form').style.display = 'block';
                 document.getElementById('additional_details_form').style.display = 'none';
             } else {
                 alert('Terjadi kesalahan saat mengirim data.');
@@ -60,14 +60,7 @@ function pushData() {
         });
 }
 
-document.getElementById('submit_button').addEventListener('click', function(event) {
-    event.preventDefault();
-    if (validatePersonalDetails()) {
-        // Sembunyikan form pertama dan tampilkan form kedua
-        document.getElementById('personal_details_form').style.display = 'none';
-        document.getElementById('additional_details_form').style.display = 'block';
-    }
-});
+
 
 document.getElementById('final_submit_button').addEventListener('click', function(event) {
     event.preventDefault();

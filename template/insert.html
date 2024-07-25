@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Landingpageform</title>
+    <title>Insert</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -62,36 +62,7 @@
                         <div class="lg:col-span-2">
                             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                                 <div class="md:col-span-5">
-                                    <form id="personal_details_form">
-                                        <div id="full_name_error_message" class="error" style="display: none;">
-                                            <div class="error-icon">⚠️</div>
-                                            <span>Nama hanya boleh berisi huruf!</span>
-                                        </div>
-                                        <label for="full_name">Nama</label>
-                                        <input id="full_name" type="text" name="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
-
-                                        <div id="phone_number_error_message" class="error" style="display: none;">
-                                            <div class="error-icon">⚠️</div>
-                                            <span>Nomor HP hanya boleh berisi angka!</span>
-                                        </div>
-                                        <label for="phone_number">Nomor HP</label>
-                                        <input id="phone_number" type="text" name="phone_number" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
-
-                                        <label for="alamat">Alamat</label>
-                                        <input id="alamat" type="text" name="alamat" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
-
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" name="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
-
-                                        <div class="md:col-span-5 text-right">
-                                            <div class="inline-flex items-end">
-                                                <button id="submit_button" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Next</button>
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                    <!-- Form kedua, tersembunyi secara default -->
-                                    <form id="additional_details_form" style="display: none;">
+                                    <form id="additional_details_form">
                                         <label for="nama_produk">Nama Produk</label>
                                         <input id="nama_produk" type="text" name="product_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
 

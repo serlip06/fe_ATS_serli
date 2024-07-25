@@ -7,31 +7,52 @@ let formData = {};
 function validatePersonalDetails() {
     const fullName = getValue("full_name");
     const phoneNumber = getValue("phone_number");
+    const email = getValue("email");
+    const alamat = getValue("alamat");
 
+    let isValid = true;
+
+    // Clear previous error messages
+    document.getElementById('full_name_error_message').style.display = 'none';
+    document.getElementById('phone_number_error_message').style.display = 'none';
+    document.getElementById('email_error_message').style.display = 'none';
+
+    // Check if all fields are filled
+    if (!fullName || !phoneNumber || !email || !alamat) {
+        alert('Form tidak lengkap, coba lengkapi.');
+        return false;
+    }
+
+    // Validate full name
     if (/[^a-zA-Z\s]/.test(fullName)) {
         document.getElementById('full_name_error_message').style.display = 'flex';
-        return false;
-    } else {
-        document.getElementById('full_name_error_message').style.display = 'none';
+        isValid = false;
     }
 
+    // Validate phone number
     if (/[^0-9]/.test(phoneNumber)) {
         document.getElementById('phone_number_error_message').style.display = 'flex';
-        return false;
-    } else {
-        document.getElementById('phone_number_error_message').style.display = 'none';
+        isValid = false;
     }
 
-    formData = {
-        nama: fullName,
-        phone_number: phoneNumber,
-        alamat: getValue("alamat"),
-        email: getValue("email").split(",")
-    };
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        document.getElementById('email_error_message').style.display = 'flex';
+        isValid = false;
+    }
 
-    return true;
+    if (isValid) {
+        formData = {
+            nama: fullName,
+            phone_number: phoneNumber,
+            alamat: alamat,
+            email: email.split(",")
+        };
+    }
+
+    return isValid;
 }
-
 
 function pushData() {
     postData(urlPOST, formData, AmbilResponse)
@@ -51,14 +72,11 @@ function pushData() {
         });
 }
 
-
 document.getElementById('final_submit_button').addEventListener('click', function(event) {
     event.preventDefault();
     if (validatePersonalDetails()) {
         pushData();
     }
 });
-
-
 
 onClick("button", pushData);
