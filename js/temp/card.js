@@ -42,6 +42,9 @@ function formatCurrency(amount) {
   return `Rp. ${parseFloat(amount).toLocaleString('id-ID')}`;
 }
 
+
+
+
 function updateProductCards(data) {
   const productContainer = document.getElementById("product-container");
   productContainer.innerHTML = ''; // Clear existing content
