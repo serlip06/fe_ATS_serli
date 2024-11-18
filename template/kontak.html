@@ -1,36 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Makanan & Minuman</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="css/tailwind/tailwind.min.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="../shuffle-for-tailwind.png">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="../js/main.js"></script>
-    <script type="module" src="../js/fetch.js"></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-        rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="../js/main.js"></script>
-    <script type="module" src="../js/fetchproduk.js"></script>
-    <script type="module" src="../js/temp/card.js"></script>
-    <script type="module" src="../js/temp/checkout.js"></script>
-    <script type="module" src="../js/controller/checkout.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
+    <title>Kantin Modern - Kontak Kami</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/template/jpg/logokantin.png" type="image/x-icon">
+
+    <!-- Path Folder -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+
+    <!-- Links -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+
 </head>
-<body
+<body>
+    <!-- NAVIGATION BAR -->
     <header class="sticky top-0 bg-white z-50 py-4">
         <nav class="px-12 grid grid-cols-4 items-center">
             <div class="flex gap-5 items-center">
@@ -43,8 +34,9 @@
                         Tentang
                     </a>
                 </li>
+                
                 <li>
-                    <a href="/template/kontak.html" style="font-family: 'Poppins', sans-serif; font-weight: bold; font-size: 1.1rem;" class="py-2 px-4 rounded-md hover:bg-yellow-400">
+                    <a href="/template/kontak.html" style="font-family: 'Poppins', sans-serif; font-weight: bold; font-size: 1.1rem;" class="py-2 px-4 rounded-md bg-yellow-400">
                         Kontak
                     </a>
                 </li>
@@ -62,36 +54,103 @@
             </div>
         </nav>
     </header>
-    </div>
-    <div class=" ">
+    
+    <!-- END NAVIGATION BAR -->
 
-        <!-- CARD 1 -->
-        <div class="flex flex-wrap justify-center" id="product-container">
-            <div class="w-full max-w-xs bg-white border border-gray-200 rounded-lg shadow bg-gradient-to-b from-gray-700 to-gray-900 dark:border-gray-700 m-2">
-                <div class="rounded overflow-hidden shadow-lg flex flex-col">
-                    <a href="#"></a>
-                    <div class="relative">
-                        <a href="#">
-                            <img id="gambarmakan"  class="w-full" src="https://images.pexels.com/photos/6086/food-salad-healthy-vegetables.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="Sunset in the mountains">
-                            <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
-                        </a>
+    <!-- HERO SECTION -->
+    <section class="hero bg-cover bg-center" style="background-color: #FFD700;">
+
+        <section class="hero bg-cover bg-center" style="background-color: #FFD700;">
+            <!-- Bagian Teks -->
+            <div class="hero-text text-center text-white pt-12" style="font-family: 'Poppins', sans-serif;">
+                <h1 class="text-4xl font-bold">Tentang Kami</h1>
+            </div> 
+        
+            <!-- Bagian Gambar -->
+            <div class="hero-image w-96 mx-auto mt-4">
+                <img src="/template/jpg/depositphotos_175741068-stock-illustration-food-adventure-city.jpg" alt="Hero Image">
+            </div>
+        
+            <!-- Navigasi Breadcrumb -->
+            <div class="p-4">
+                <nav class="text-white">
+                    <ul class="flex justify-center items-center space-x-2">
+                        <li class="flex items-center">
+                            <a href="/template/index.html" class="hover:underline font-['Poppins'] text-black font-extrabold">Home</a>
+                            <span class="text-xl mx-1"> &gt; </span> <!-- Menggunakan text-xl untuk simbol > dan menambahkan margin agar tidak terlalu rapat -->
+                        </li>
+                        <li>
+                            <a href="#" class="font-['Poppins'] font-extrabold hover:underline text-black">Kontak Kami</a>
+                        </li>
+                    </ul>
+                </nav>            
+            </div>
+        </section>
+    </section>
+    <!-- END HERO SECTION -->
+
+    <!-- CONTACT SECTION -->
+    <section class="bg-white py-16 px-4">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+            
+            <!-- Informasi Alamat -->
+            <div class="space-y-6">
+                <h2 class="text-3xl font-semibold text-gray-800" style="font-family: 'Poppins', sans-serif;">Informasi Alamat</h2>
+
+                <div>
+                    <p class="font-semibold">Kantin Modern.</p>
+                    <p>Jl. Sariasih No. 54</p>
+                    <p>Kota Bandung</p>
+                    <p>Telp: <a href="https://wa.me/6287836608003">+62 8783 6608 003</a></p>
+                    <p>Email: <a href="mailto:company.abnormal@gmail.com" class="text-orange-500">kantin.modern@gmail.com</a></p>
+                </div>
+                <div class="row">
+                    <iframe
+                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126693.57846419746!2d107.78890013776288!3d-7.105785776214335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68b789c9645aaf%3A0x401e8f1fc28c920!2sKec.%20Leles%2C%20Kabupaten%20Garut%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1703008403145!5m2!1sid!2sid"
+                     width="500" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                     referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <!-- component -->
+                <div class="max-w-screen-xl space-y-8 overflow-hidden ">
+                </div>
+
+            </div>
+
+            
+            <!-- Formulir Kontak -->
+            <div>
+                <h2 class="text-3xl font-semibold text-gray-800" style="font-family: 'Poppins', sans-serif;">Hubungi Kami</h2>
+
+                <form action="#" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nama *</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="Nama Lengkap" required>
                     </div>
-                    <div class="px-6 py-4 mb-auto">
-                        <a id="namamakan" class="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">Why to eat salad?</a>
-                        <a id="desmakan" class="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">Why to eat salad?</a>
-                        <p id="hargamakan" class="text-gray-500 text-sm">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        </p>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="Email Anda" required>
                     </div>
-                    <div class="px-6 py-3 flex flex-row items-center justify-between bg-gray-100">
-                        <button id="pesan"  type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Pesan</button>
+                    <div>
+                        <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
+                        <input type="text" id="alamat" name="alamat" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="Alamat Lengkap">
                     </div>
-                </div>  
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700">Handphone *</label>
+                        <input type="text" id="phone" name="phone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="Nomor Handphone" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">Pesan *</label>
+                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                    </div>
+                    <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md w-full">Kirim Pesan</button>
+                </form>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- END CONTACT SECTION -->
 
-    <!-- ===== footer ===== -->
+
+    <!-- FOOTER -->
     <div class="text-center text-center bg-yellow-300 p-6">
         <a href="#" class="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 underline" style="font-family: 'Poppins', sans-serif;">
             <img src="/template/jpg/logokantin.png" class="h-12 mr-3 sm:h-9" alt="Landwind Logo"> Kantin Modern. </a>
@@ -150,12 +209,10 @@
             </li>
         </ul>
     </div>
-    <!-- FOOTER SESSION END -->
+    </section>
 
-</div>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="../js/charts-demo.js"></script>
-<script src="../js/controller/delete.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>    
+    <!-- END SOCIAL MEDIA BUTTONS -->
+
+    <!-- END FOOTER -->
 </body>
 </html>
