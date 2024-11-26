@@ -55,7 +55,7 @@
                 <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
                     <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                         <div class="text-gray-600">
-                            <p class="font-medium text-lg">Personal Details Costumer & Products</p>
+                            <p class="font-medium text-lg">Personal Details Costumer</p>
                             <p></p>
                         </div>
 
@@ -63,27 +63,26 @@
                             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                                 <div class="md:col-span-5">
                                     <form id="additional_details_form">
-                                        <label for="nama_produk">Nama Produk</label>
-                                        <input id="nama_produk" type="text" name="product_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
-
-                                        <label for="deskripsi">Deskripsi</label>
-                                        <input id="deskripsi" type="text" name="description" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
-
-                                        <label for="harga">Harga</label>
-                                        <input id="harga" type="number" name="price" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
-
-                                        <label for="stok">Stok</label>
-                                        <input id="stok" type="number" name="stock" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
-
-                                        <label for="gambar">URL Gambar</label>
-                                        <input id="gambar" type="url" name="image_url" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
-
+                                        <label for="nama">Nama</label>
+                                        <input id="nama" type="text" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                        <div id="full_name_error_message" class="error">Nama hanya boleh berisi huruf dan spasi.</div>
+                                    
+                                        <label for="phone_number">Phone Number</label>
+                                        <input id="phone_number" type="text" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                        <div id="phone_number_error_message" class="error">Nomor telepon hanya boleh berisi angka.</div>
+                                    
+                                        <label for="alamat">Alamat</label>
+                                        <input id="alamat" type="text" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                    
+                                        <label for="Email">Email </label>
+                                        <input id="Email" type="text" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                        <label for="Emal">(Pisahkan dengan koma jika lebih dari satu)</label>
+                                    
                                         <div class="md:col-span-5 text-right">
-                                            <div class="inline-flex items-end">
-                                                <button id="final_submit_button" type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-                                            </div>
+                                            <button id="button" type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Submit</button>
                                         </div>
                                     </form>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -96,7 +95,7 @@
             </div>
         </div>
     </div>
-
+<!-- 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const fullNameInput = document.getElementById('full_name');
@@ -181,7 +180,7 @@
             });
         });
     </script>
-        
+         -->
     <script type="module" src="../js/controller/post.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../js/charts-demo.js"></script> 

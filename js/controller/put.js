@@ -12,11 +12,11 @@ function pushData (){
         phone_number : getValue("phone_number"),
         alamat : getValue("alamat"),
         email : email.split(","),
-        nama_produk : getValue("nama_produk"),
-        deskripsi : getValue("deskripsi"),
-        harga : parseInt(getValue("harga"), 10),
-        stok : getValue("stok"),
-        gambar : getValue("gambar")
+        // nama_produk : getValue("nama_produk"),
+        // deskripsi : getValue("deskripsi"),
+        // harga : parseInt(getValue("harga"), 10),
+        // stok : getValue("stok"),
+        // gambar : getValue("gambar")
 
     }
     putData(urlPUT,data,AmbilResponse)
