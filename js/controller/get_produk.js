@@ -13,7 +13,8 @@ function formatCurrency(amount) {
 
 function isiRow(value) {
     let content = 
-    iniTabel.replace("#NAMA_PRODUK#", value.nama_produk || 'N/A')
+    iniTabel.replace("#ID#", value._id || 'N/A')
+            .replace("#NAMA_PRODUK#", value.nama_produk || 'N/A')
             .replace("#DESKRIPSI#", value.deskripsi || 'N/A')
             .replace("#HARGA#", formatCurrency(value.harga) || 'Rp. 0,00')
             .replace("#STOK#", value.stok || 'N/A')

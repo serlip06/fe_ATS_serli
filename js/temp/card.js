@@ -1,4 +1,4 @@
-import { urlAPI } from "../config/url.js";
+import { urlAPI } from "../config/url_produk.js";
 
 function fetchDataFromEndpoint() {
   const url = urlAPI;

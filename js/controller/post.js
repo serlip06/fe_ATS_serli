@@ -7,14 +7,18 @@ import { urlPOST, AmbilResponse } from "../config/url_post.js";
 // let formData = {};
 
 function pushData(){
-    var email = getValue("email");
-    
-    let data = {
-        
-    nama : getValue("nama"),
-    phone_number : getValue("phone_number"),
-    alamat : getValue("alamat"),
-    email : email.split(",")
+    let data= {
+        nama_produk : getValue("nama_produk"),
+        deskripsi : getValue("deskripsi"),
+        harga : getValue("harga"),
+        gambar : getValue ("gambar"),
+        stok : getValue ("stok"),
+        // nama_produk : getValue("nama_produk"),
+        // deskripsi : getValue("deskripsi"),
+        // harga : parseInt(getValue("harga"), 10),
+        // stok : getValue("stok"),
+        // gambar : getValue("gambar")
+
     }
     postData(urlPOST, data, AmbilResponse);
 }
