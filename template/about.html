@@ -27,6 +27,146 @@
         .font-sixtyfour-convergence {
             font-family: 'Sixtyfour Convergence', sans-serif;
         }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+          }
+          h1 {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+          }
+          table, th, td {
+            border: 1px solid #ccc;
+          }
+          th, td {
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+          }
+          img {
+            max-width: 150px;
+            height: auto;
+          }
+          .center {
+            text-align: center;
+          }
+          a {
+            color: #007BFF;
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+      
+      
+          .news-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          }
+          
+          .news-table tr {
+            border-bottom: 1px solid #ddd;
+          }
+          
+          .image-cell {
+            width: 150px;
+            text-align: center;
+            padding: 10px;
+          }
+          
+          .image-cell img {
+            width: 150px;
+            height: auto;
+            border-radius: 8px;
+          }
+          
+          .content-cell {
+            padding: 10px 20px;
+          }
+          
+          .content-cell h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+          }
+          
+          .content-cell p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+          }
+          
+          .content-cell .read-more {
+            display: inline-block;
+            padding: 8px 15px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+          }
+          
+          .content-cell .read-more:hover {
+            background-color: #0056b3;
+          }
+          
+          .date-cell {
+            padding: 10px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            white-space: nowrap;
+          }
+          
+      
+          .swiper-button-prev:after,
+          .swiper-rtl .swiper-button-next:after {
+              content: '' !important;
+          }
+      
+          .swiper-button-next:after,
+          .swiper-rtl .swiper-button-prev:after {
+              content: '' !important;
+          }
+      
+          .swiper-button-next svg,
+          .swiper-button-prev svg {
+              width: 24px !important;
+              height: 24px !important;
+          }
+      
+          .swiper-button-next,
+          .swiper-button-prev {
+              position: relative !important;
+          }
+      
+          .swiper-slide.swiper-slide-active {
+              --tw-border-opacity: 1 !important;
+              border-color: rgb(79 70 229 / var(--tw-border-opacity)) !important;
+          }
+      
+          .swiper-slide.swiper-slide-active>.swiper-slide-active\:text-indigo-600 {
+              --tw-text-opacity: 1;
+              color: rgb(79 70 229 / var(--tw-text-opacity));
+          }
+      
+          .swiper-slide.swiper-slide-active>.flex .grid .swiper-slide-active\:text-indigo-600 {
+              --tw-text-opacity: 1;
+              color: rgb(79 70 229 / var(--tw-text-opacity));
+          }
     </style>
 
 </head>
@@ -100,7 +240,7 @@
     <section class="flex justify-center items-center mt-6 flex-col bg-white ">
         <div class="text-center">
             <!-- Tulisan Aku Laper Company -->
-            <h1 class="font-great-vibes text-5xl text-black">Kantin Modern.</h1>
+            <!-- <h1 class="font-great-vibes text-5xl text-black">Kantin Modern.</h1> -->
             <!-- Tulisan Tentang Kami di bawah Aku Laper Company -->
             <!-- <h2 class="text-4xl font-semibold mt-4 text-orange-500" style="font-family: 'Poppins', sans-serif;">Tentang Kami</h2> -->
         </div>
@@ -210,12 +350,23 @@
       </div>
     </div>
   </div>
-       
     </section>
     <!-- OUR TEAM END -->
      <!-- TENGAH SECTION END -->
 
+     <!-- blog session -->
+     <section class="py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 class="font-manrope text-4xl font-bold text-gray-900 text-center mb-14">Our popular blogs</h2>
+            <div id="blog-container" class="flex justify-center mb-14 gap-y-8 lg:gap-y-0 flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between lg:gap-x-8">
+                <!-- Data dari API akan ditampilkan di sini -->
+            </div>
+            <a href="javascript:;" id="see-all-button" class="cursor-pointer border border-gray-300 shadow-sm rounded-full py-3.5 px-7 w-52 flex justify-center items-center text-gray-900 font-semibold mx-auto transition-all duration-300 hover:bg-gray-100"></a>
+        </div>
+    </section>
     
+    <script src="/js/blog.js"></script>
+    <!-- end -->
 
     <!-- ===== footer ===== -->
     <div class="text-center text-center bg-yellow-300 p-6">
@@ -281,7 +432,43 @@
     </div>
     <!-- FOOTER SESSION END -->
 
-
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+          slidesPerView: 2,
+          spaceBetween: 28,
+          centeredSlides: false,
+          loop: true,
+          pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+          },
+          navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+              0: {
+                  slidesPerView: 1,
+                  spaceBetween: 20,
+                  centeredSlides: false,
+              },
+              568: {
+                  slidesPerView: 2,
+                  spaceBetween: 28,
+                  centeredSlides: false,
+              },
+              768: {
+                  slidesPerView: 2,
+                  spaceBetween: 28,
+                  centeredSlides: false,
+              },
+              1024: {
+                  slidesPerView: 2,
+                  spaceBetween: 32,
+              },
+          },
+      });
+      </script>
     <!-- ===== scripts ===== -->
 <script src="assets/js/main.js"></script>
 </body>
