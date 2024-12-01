@@ -37,12 +37,12 @@ function fetchDataFromEndpoint() {
     });
 }
 
+
+
 function formatCurrency(amount) {
   // Convert amount to number and format with thousands separators and "Rp."
   return `Rp. ${parseFloat(amount).toLocaleString('id-ID')}`;
 }
-
-
 
 
 function updateProductCards(data) {
@@ -53,31 +53,40 @@ function updateProductCards(data) {
     const formattedPrice = formatCurrency(product.harga);
 
     const productCard = `
-        <div class="flex flex-wrap justify-center">
+      <div class="flex flex-wrap justify-center">
     <!-- Start of card -->
-    <div class="w-full max-w-xs h-96 bg-white border border-gray-200 rounded-lg shadow bg-gradient-to-b from-gray-700 to-gray-900 dark:border-gray-700 m-2">
-        <div class="rounded overflow-hidden shadow-lg flex flex-col h-full">
-            <a href="#"></a>
+    <div id="card-product" class="w-65 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-2">
+        <a href="#" id="link-product">
             <div class="relative">
-                <a href="#">
-                    <img class="w-full h-48 object-cover" src="${product.gambar}" alt="Sunset in the mountains">
-                    <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
-                </a>
+                <img id="gambarmakan" src="${product.gambar}" alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
             </div>
-            <div class="px-6 py-4 flex-grow">
-                <a id="namamakan" class="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2 text-white font-sans">${product.nama_produk}</a>
-                <a id="desmakan" class="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2 text-white font-sans">${product.deskripsi}</a>
-                <p id="hargamakan" class="text-gray-500 text-sm text-white font-sans">${formattedPrice}</p>
+            <div id="product-info" class="px-4 py-3 w-72">
+                <span id="desmakan" class="text-gray-400 mr-3 uppercase text-xs">${product.deskripsi}</span>
+                <p id="namamakan" class="text-lg font-bold text-black truncate block capitalize">${product.nama_produk}</p>
+                <div id="hargamakan" class="flex items-center">
+                    <p class="text-lg font-semibold text-black cursor-auto my-3">${formattedPrice}</p>
+                   
+                    <div id="add-to-cart-icon" class="ml-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                        </svg>
+                    </div>
+                </div>
             </div>
-            <div class="px-6 py-3 flex flex-row items-center justify-between bg-gray-100">
-                <a href="cek.html?customerID" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Pesan</a>
-            </div>
+        </a>
+        <div class="px-6 py-3 flex flex-row items-center justify-between bg-gray-100">
+            <a href="" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Pesan</a>
         </div>
     </div>
     <!-- End of card -->
 
     <!-- Repeat the same structure for other cards -->
 </div>
+
     `
     productContainer.innerHTML += productCard;
   });

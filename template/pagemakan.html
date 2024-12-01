@@ -28,6 +28,11 @@
     <script type="module" src="../js/temp/checkout.js"></script>
     <script type="module" src="../js/controller/checkout.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     
 </head>
 <body
@@ -40,10 +45,17 @@
             <ul class="flex justify-center gap-2 col-span-2">
                 <div>
                     <div class="flex justify-center gap-2 items-center border-2 border-black rounded-3xl px-2">
-                        <input type="search" name="" id="" placeholder="Cari Menu" class="rounded-3xl w-96 px-4 py-2 focus:outline-none">
-                        <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png" alt="" class="rounded-[50%] w-8 h-8 cursor-pointer">
+                        <input type="search" id="search-input" placeholder="Cari Menu" class="rounded-3xl w-96 px-4 py-2 focus:outline-none" oninput="searchProducts()">
+                        <img src="https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png" alt="search-icon" class="rounded-[50%] w-8 h-8 cursor-pointer" onclick="searchProducts()">
                     </div>
                 </div>
+                
+                <div id="product-list" class="mt-4 flex flex-wrap justify-center">
+                    <!-- Product results will be displayed here -->
+                </div>
+                
+                
+                
             </ul>
             <div class="flex justify-end gap-4">
                 <a href="/template/index.html" class="border-2 border-orange-500 py-2 px-4 rounded-3xl text-orange-500 hover:bg-orange-600 hover:text-white hover:border-orange-600 duration-500" style="font-family: 'Poppins', sans-serif; font-weight: bold;">
@@ -59,35 +71,60 @@
     <div class=" ">
 
         <!-- CARD 1 -->
-        <div class="flex flex-wrap justify-center" id="product-container">
-            <div class="w-full max-w-xs bg-white border border-gray-200 rounded-lg shadow bg-gradient-to-b from-gray-700 to-gray-900 dark:border-gray-700 m-2">
-                <div class="rounded overflow-hidden shadow-lg flex flex-col">
-                    <a href="#"></a>
-                    <div class="relative">
-                        <a href="#">
-                            <img id="gambarmakan"  class="w-full" src="https://images.pexels.com/photos/6086/food-salad-healthy-vegetables.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" alt="Sunset in the mountains">
-                            <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
-                        </a>
+
+        <div class="flex flex-col min-h-screen">
+            <!-- Main Content -->
+            <div class="flex flex-wrap justify-center flex-grow" id="product-container">
+                <!-- Loading Indicator -->
+                <div class="flex flex-wrap justify-center" id="loading-container">
+                    <div class="w-65 bg-white shadow-md rounded-xl m-2 flex justify-center items-center h-80 relative">
+                        <div class="absolute inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
+                            <div class="mt-4 flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cup-straw ml-4 animate-bounce" viewBox="0 0 16 16">
+                                    <path d="M8 0a2.5 2.5 0 0 1 2.5 2.5V3h3v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3h3V2.5A2.5 2.5 0 0 1 8 0zm1 3V2.5A1.5 1.5 0 0 0 7 2.5V3h2zm3 11a1 1 0 0 0 1-1V4H4v9a1 1 0 0 0 1 1h8z"/>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
-                    <div class="px-6 py-4 mb-auto">
-                        <a id="namamakan" class="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">Why to eat salad?</a>
-                        <a id="desmakan" class="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">Why to eat salad?</a>
-                        <p id="hargamakan" class="text-gray-500 text-sm">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        </p>
-                    </div>
-                    <div class="px-6 py-3 flex flex-row items-center justify-between bg-gray-100">
-                        <button id="pesan"  type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Pesan</button>
-                    </div>
-                </div>  
+                </div>
+        
+                <!-- Start of card (hidden initially) -->
+                <div id="card-product" class="w-65 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-2 hidden">
+                    <a href="#" id="link-product">
+                        <img id="gambarmakan" src="https://i.pinimg.com/originals/45/1c/3a/451c3a2537616f5d5d06750972b5458e.jpg"
+                            alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                        <div id="product-info" class="px-4 py-3 w-72">
+                            <span id="desmakan" class="text-gray-400 mr-3 uppercase text-xs">HEHE</span>
+                            <p id="namamakan" class="text-lg font-bold text-black truncate block capitalize">Nasi Padang</p>
+                            <div id="hargamakan" class="flex items-center">
+                                <p class="text-lg font-semibold text-black cursor-auto my-3">Rp.10,000</p>
+                                <del>
+                                    <p id="product-discount-price" class="text-sm text-gray-600 cursor-auto ml-2">Rp.20,000</p>
+                                </del>
+                                <div id="add-to-cart-icon" class="ml-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                                        <path
+                                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- End of card -->
             </div>
-        </div>
-    </div>
+        
+        
 
     <!-- ===== footer ===== -->
     <div class="text-center text-center bg-yellow-300 p-6">
-        <a href="#" class="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 underline" style="font-family: 'Poppins', sans-serif;">
-            <img src="/template/jpg/logokantin.png" class="h-12 mr-3 sm:h-9" alt="Landwind Logo"> Kantin Modern. </a>
+        <a href="#" class="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900" style="font-family: 'Poppins', sans-serif;">
+            <img src="/template/jpg/logokantin.png" class="h-12 sm:h-9" alt="Landwind Logo">
+            <span class="mx-1">|</span> <!-- The pipe separator with smaller margin -->
+            Menu Kantin Modern
+        </a>
         
         <span class="block text-sm text-center text-black font-semibold"> 
             Kantin Modern.
@@ -146,6 +183,64 @@
     <!-- FOOTER SESSION END -->
 
 </div>
+<script>
+     // Function to fetch products based on the search input
+     async function searchProducts() {
+        const query = document.getElementById('search-input').value;
+        
+        if (!query) {
+            // Clear results if input is empty
+            document.getElementById('product-list').innerHTML = '';
+            return;
+        }
+
+        try {
+            // Fetch products from the API with the search query
+            const response = await fetch(`https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/produ?search=${query}`);
+            const products = await response.json();
+
+            console.log("API Response: ", products);  // Debug: log the API response to check the structure
+
+            // Display products
+            displayProducts(products);
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+        }
+    }
+
+    // Function to display products
+    function displayProducts(products) {
+        const productList = document.getElementById('product-list');
+        productList.innerHTML = ''; // Clear previous results
+
+        // Check if products exist and have content
+        if (!products || products.length === 0) {
+            productList.innerHTML = '<p>No products found.</p>';
+            return;
+        }
+
+        // Create product cards for each product
+        products.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.classList.add('w-65', 'bg-white', 'shadow-md', 'rounded-xl', 'm-2', 'text-center');
+            
+            // Adjust the product data based on the API response structure
+            productCard.innerHTML = `
+                <a href="#">
+                    <img src="${product.gambar}" alt="${product.nama_produk}" class="h-80 w-72 object-cover rounded-t-xl">
+                    <div class="px-4 py-3">
+                        <p class="text-lg font-bold text-black truncate block capitalize">${product.nama_produk}</p>
+                        <p class="text-sm text-gray-600">${product.deskripsi}</p>
+                        <p class="text-lg font-semibold text-black">Rp. ${product.harga}</p>
+                    </div>
+                </a>
+            `;
+
+            productList.appendChild(productCard);
+        });
+    }
+</script>
+<script src="/js/temp/search.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="../js/charts-demo.js"></script>
 <script src="../js/controller/delete.js"></script>
