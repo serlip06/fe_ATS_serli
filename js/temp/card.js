@@ -53,7 +53,7 @@ function updateProductCards(data) {
     const formattedPrice = formatCurrency(product.harga);
 
     const productCard = `
-      <div class="flex flex-wrap justify-center">
+    <div class="flex flex-wrap justify-center">
     <!-- Start of card -->
     <div id="card-product" class="w-65 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-2">
         <a href="#" id="link-product">
@@ -67,7 +67,27 @@ function updateProductCards(data) {
                 <div id="hargamakan" class="flex items-center">
                     <p class="text-lg font-semibold text-black cursor-auto my-3">${formattedPrice}</p>
                    
-                    <div id="add-to-cart-icon" class="ml-auto">
+                    <div id="add-to-cart-icon" class="ml-auto flex items-center space-x-2">
+                        <!-- Dropdown for quantity -->
+                        <select id="quantity" class="px-2 py-1 border border-gray-300 rounded-md">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+
+                        <!-- Stock Label with Icon -->
+                        <div class="flex items-center ml-2">
+                            <div class="text-center flex flex-col items-center">
+                              
+                                <div class="flex items-center justify-center w-10 h-10 bg-gray-200 text-gray-700 rounded-md">
+                                    <span id="stock" class="text-lg font-bold">${product.stok}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cart Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
@@ -78,13 +98,11 @@ function updateProductCards(data) {
                 </div>
             </div>
         </a>
-        <div class="px-6 py-3 flex flex-row items-center justify-between bg-gray-100">
-            <a href="" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Pesan</a>
-        </div>
     </div>
-    <!-- End of card -->
+</div>
 
-    <!-- Repeat the same structure for other cards -->
+
+
 </div>
 
     `
