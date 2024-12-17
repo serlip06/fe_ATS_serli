@@ -79,8 +79,8 @@ function updateProductCards(data) {
 
                         <!-- Stock Label with Icon -->
                         <div class="flex items-center ml-2">
-                            <div class="text-center flex flex-col items-center">
-                              
+                            <div class="text-center">
+                                <span class="block text-sm text-gray-500"></span> 
                                 <div class="flex items-center justify-center w-10 h-10 bg-gray-200 text-gray-700 rounded-md">
                                     <span id="stock" class="text-lg font-bold">${product.stok}</span>
                                 </div>
@@ -100,7 +100,6 @@ function updateProductCards(data) {
         </a>
     </div>
 </div>
-
 
 
 </div>
