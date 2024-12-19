@@ -5,6 +5,7 @@ export function isiData(results) {
         { id: 'harga', path: 'harga' },
         { id: 'gambar', path: 'gambar' },
         { id: 'stok', path: 'stok' },
+        { id: 'kategori', path: 'kategori' },
     ];
 
     inputMapping.forEach(({ id, path }) => {

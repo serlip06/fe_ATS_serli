@@ -14,31 +14,53 @@
         <form id="registrationForm">
             <div class="mb-4">
                 <label for="nama_produk" class="block text-gray-700 text-sm font-bold mb-2">Nama Makanan</label>
-                <input type="text" id="nama_produk" name="nama_produk" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan nama makanan">
+                <input type="text" id="nama_produk" name="nama_produk" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Masukkan nama makanan">
             </div>
 
             <div class="mb-4">
                 <label for="deskripsi" class="block text-gray-700 text-sm font-bold mb-2">Deskripsi</label>
-                <input type="text" id="deskripsi" name="deskripsi" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan deskripsi makanan">
+                <input type="text" id="deskripsi" name="deskripsi" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Masukkan deskripsi makanan">
             </div>
 
             <div class="mb-4">
                 <label for="harga" class="block text-gray-700 text-sm font-bold mb-2">Harga</label>
-                <input type="text" id="harga" name="harga" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Masukkan harga makanan">
+                <input type="text" id="harga" name="harga" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Masukkan harga makanan">
             </div>
 
             <div class="mb-4">
                 <label for="gambar" class="block text-gray-700 text-sm font-bold mb-2">Gambar</label>
-                <input type="text" id="gambar" name="gambar" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="URL gambar makanan">
+                <input type="text" id="gambar" name="gambar" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="URL gambar makanan">
             </div>
 
             <div class="mb-4">
                 <label for="stok" class="block text-gray-700 text-sm font-bold mb-2">Stok</label>
-                <input type="text" id="stok" name="stok" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Jumlah stok makanan">
+                <input type="text" id="stok" name="stok" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Jumlah stok makanan">
             </div>
 
+            <div class="mb-4">
+                <label for="kategori" class="block text-gray-700 text-sm font-bold mb-2">Kategori</label>
+                <select id="kategori" name="kategori" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="" disabled selected>Pilih kategori makanan</option>
+                    <option value="Makanan">Makanan</option>
+                    <option value="Minuman">Minuman</option>
+                </select>
+            </div>
+
+
             <div class="flex items-center justify-between">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Kirim</button>
+                <button type="submit"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Kirim</button>
             </div>
         </form>
     </div>
@@ -55,34 +77,44 @@
             const harga = document.getElementById('harga').value;
             const gambar = document.getElementById('gambar').value;
             const stok = document.getElementById('stok').value;
+            const kategori = document.getElementById('kategori').value.trim();
+
+            // Daftar kategori yang valid
+            const validCategories = ['Makanan', 'Minuman'];
+
+            // Validasi kategori
+            if (!validCategories.includes(kategori)) {
+                alert('Kategori tidak valid. Pilih kategori yang benar.');
+                return;
+            }
 
             // Struktur data untuk dikirim
             const data = {
                 nama_produk,
                 deskripsi,
-                harga: parseFloat(harga), // Konversi harga menjadi angka
+                harga: parseFloat(harga),  // Konversi harga menjadi angka
                 gambar,
-                stok: parseInt(stok) // Konversi stok menjadi angka
+                stok: parseInt(stok),  // Konversi stok menjadi angka
+                kategori,
             };
 
             try {
-                // Kirim data ke API
                 const response = await fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/insertproduk', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+                        'Accept': 'application/json',
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data),
                 });
 
-                // Cek respons
                 if (response.ok) {
                     const result = await response.json();
                     alert('Data berhasil dikirim: ' + JSON.stringify(result));
                     form.reset(); // Reset form setelah sukses
                 } else {
                     const error = await response.json();
+                    console.log('Error:', error);  // Log error untuk mengetahui masalah
                     alert('Terjadi kesalahan: ' + JSON.stringify(error));
                 }
             } catch (err) {
@@ -90,9 +122,59 @@
                 alert('Gagal mengirim data. Periksa koneksi Anda.');
             }
         });
+
+
+        // form.addEventListener('submit', async (event) => {
+        //     event.preventDefault();
+
+        //     // Ambil data dari form
+        //     const nama_produk = document.getElementById('nama_produk').value;
+        //     const deskripsi = document.getElementById('deskripsi').value;
+        //     const harga = document.getElementById('harga').value;
+        //     const gambar = document.getElementById('gambar').value;
+        //     const stok = document.getElementById('stok').value;
+        //     const kategori = document.getElementById('kategori').value;
+
+        //     // Struktur data untuk dikirim
+        //     const data = {
+        //         nama_produk,
+        //         deskripsi,
+        //         harga: parseFloat(harga), // Konversi harga menjadi angka
+        //         gambar,
+        //         stok: parseInt(stok), // Konversi stok menjadi angka
+        //         kategori,
+
+        //     };
+
+        //     try {
+        //         // Kirim data ke API
+        //         const response = await fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/insertproduk', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'Accept': 'application/json'
+        //             },
+        //             body: JSON.stringify(data)
+        //         });
+
+        //         // Cek respons
+        //         if (response.ok) {
+        //             const result = await response.json();
+        //             alert('Data berhasil dikirim: ' + JSON.stringify(result));
+        //             form.reset(); // Reset form setelah sukses
+        //         } else {
+        //             const error = await response.json();
+        //             alert('Terjadi kesalahan: ' + JSON.stringify(error));
+        //         }
+        //     } catch (err) {
+        //         console.error('Error:', err);
+        //         alert('Gagal mengirim data. Periksa koneksi Anda.');
+        //     }
+        // });
     </script>
 
-    
+
 
 </body>
+
 </html>

@@ -8,7 +8,8 @@ function pushData() {
         deskripsi: getValue("deskripsi"),
         harga: parseInt(getValue("harga")), // Konversi ke integer
         gambar: getValue("gambar"),
-        stok: parseInt(getValue("stok")) // Konversi ke integer
+        stok: parseInt(getValue("stok")), // Konversi ke integer
+        kategori: getValue("kategori"),
     };
 
     // Kirim data ke API

@@ -9,6 +9,7 @@ form.addEventListener('submit', async (event) => {
     const harga = document.getElementById('harga').value;
     const gambar = document.getElementById('gambar').value;
     const stok = document.getElementById('stok').value;
+    const kategori = document.getElementById('kategori').value;
 
     // Struktur data untuk dikirim
     const data = {
@@ -16,7 +17,8 @@ form.addEventListener('submit', async (event) => {
         deskripsi,
         harga: parseFloat(harga), // Konversi harga menjadi angka
         gambar,
-        stok: parseInt(stok) // Konversi stok menjadi angka
+        stok: parseInt(stok), // Konversi stok menjadi angka
+        kategori,
     };
 
     try {
