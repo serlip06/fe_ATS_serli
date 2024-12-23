@@ -48,6 +48,8 @@
     display: none;
 }
 
+
+
 </style>
 <body
 
@@ -119,54 +121,27 @@
     </header>
     </div>
 
-        <!-- CARD 1 -->
-        <div id="" class="flex flex-col min-h-screen">
-            <!-- Main Content -->
-            <div  id="app" class="flex flex-wrap justify-center flex-grow" id="product-container">
-                <!-- Loading Indicator -->
-                <div class="flex flex-wrap justify-center" id="loading-container">
-                    <div class="w-65 bg-white shadow-md rounded-xl m-2 flex justify-center items-center h-80 relative">
-                        <div class="absolute inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
-                            <div class="mt-4 flex justify-center items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cup-straw ml-4 animate-bounce" viewBox="0 0 16 16">
-                                    <path d="M8 0a2.5 2.5 0 0 1 2.5 2.5V3h3v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3h3V2.5A2.5 2.5 0 0 1 8 0zm1 3V2.5A1.5 1.5 0 0 0 7 2.5V3h2zm3 11a1 1 0 0 0 1-1V4H4v9a1 1 0 0 0 1 1h8z"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        
-                <!-- Start of card (hidden initially) -->
-                <div id="card-product" style="display: none;" class="w-65 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-2">
-                    <a href="#" id="link-product">
-                        <img id="gambarmakan" src="https://i.pinimg.com/originals/45/1c/3a/451c3a2537616f5d5d06750972b5458e.jpg"
-                            alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
-                        <div id="product-info" class="px-4 py-3 w-72">
-                            <span id="desmakan" class="text-gray-400 mr-3 uppercase text-xs">HEHE</span>
-                            <p id="namamakan" class="text-lg font-bold text-black truncate block capitalize">Nasi Padang</p>
-                            <div id="hargamakan" class="flex items-center">
-                                <p class="text-lg font-semibold text-black cursor-auto my-3">Rp.10,000</p>
-                                <del>
-                                    <p id="product-discount-price" class="text-sm text-gray-600 cursor-auto ml-2">Rp.20,000</p>
-                                </del>
-                                <div id="add-to-cart-icon" class="ml-auto">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                                        <path
-                                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- End of card -->
-            </div>
-        
-        
-
+  <!-- CARD 1 -->
+<div class="flex flex-col min-h-screen">
+  <!-- Main Content -->
+  <div id="app" class="flex-grow flex flex-col justify-center relative">
+    <!-- Loading Indicator -->
+    <div id="loading-container" class="absolute inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
+      <div class="flex justify-center items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-cup-straw animate-bounce" viewBox="0 0 16 16">
+          <path d="M8 0a2.5 2.5 0 0 1 2.5 2.5V3h3v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3h3V2.5A2.5 2.5 0 0 1 8 0zm1 3V2.5A1.5 1.5 0 0 0 7 2.5V3h2zm3 11a1 1 0 0 0 1-1V4H4v9a1 1 0 0 0 1 1h8z" />
+        </svg>
+      </div>
+    </div>
+    <!-- Data Section -->
+    <div id="data-container" class="p-4">
+      <!-- Data content will be dynamically added here -->
+      
+    </div>
+  </div>
+  <!-- Footer -->
    <!-- ===== footer ===== -->
+   <footer class=" py-6 mt-auto">
    <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
     <div class="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
       <div class="md:max-w-md lg:col-span-2">
@@ -287,6 +262,11 @@
 
 
 </div>
+</footer>
+<script>
+  document.getElementById('card-product').classList.remove('hidden');
+
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/controller/search.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>

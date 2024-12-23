@@ -6,14 +6,40 @@ function initializeApp() {
   appContainer.className = "flex flex-row items-start gap-4"; // Use flexbox for layout
 
   // Create filter container
-  const filterContainer = document.createElement("div");
-  filterContainer.className = "filter-container my-4 w-1/4"; // Sidebar styling
-  filterContainer.innerHTML = `
-    <label for="category-dropdown" class="block mb-2 text-lg font-semibold">Pilih Kategori:</label>
-    <select id="category-dropdown" class="w-full px-4 py-2 border rounded-md">
+// Buat elemen filterContainer
+const filterContainer = document.createElement("div");
+filterContainer.className = "filter-container mx-4"; // Margin horizontal untuk jarak antar elemen
+filterContainer.innerHTML = `
+  <div class="flex items-center space-x-3 p-3 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg">
+    <label for="category-dropdown" class="text-sm font-semibold text-gray-700 flex-shrink-0 font-poppins">
+      <i class="fas fa-filter text-blue-600 mr-2"></i> Kategori:
+    </label>
+    <select id="category-dropdown" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-poppins bg-white hover:border-blue-500 focus:ring focus:ring-blue-300 focus:border-blue-500">
       <option value="All">Semua</option>
+  
     </select>
-  `;
+  </div>
+`;
+
+// Pastikan font Poppins dimuat di halaman
+const link = document.createElement("link");
+link.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap";
+link.rel = "stylesheet";
+document.head.appendChild(link);
+
+// Menambahkan filterContainer ke dalam navbar atau elemen lain
+const navbar = document.querySelector(".navbar"); // Menemukan navbar (ganti jika perlu)
+if (navbar) {
+  navbar.appendChild(filterContainer);
+}
+
+// CSS untuk memindahkan posisi elemen
+filterContainer.style.position = "relative";
+filterContainer.style.top = "20px"; // Mengatur posisi lebih ke bawah
+filterContainer.style.left = "-20px"; // Menggeser sedikit ke kiri
+
+
+
 
   // Create product container
   const productContainer = document.createElement("div");
@@ -100,50 +126,48 @@ function updateProductCards(data) {
     const formattedPrice = formatCurrency(product.harga);
 
     const productCard = `
-      <div class="flex-none w-80 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-2">
-        <a href="#" class="block">
-          <div class="relative">
-            <img src="${product.gambar}" alt="${product.nama_produk}" class="h-64 w-full object-cover rounded-t-xl" />
-            <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
-          </div>
-          <div class="px-4 py-3">
-            <span class="text-gray-400 mr-3 uppercase text-xs">${product.deskripsi}</span>
-            <p class="text-lg font-bold text-black truncate capitalize">${product.nama_produk}</p>
-            <div class="flex items-center mt-2">
-              <p class="text-lg font-semibold text-black">${formattedPrice}</p>
-              <div class="ml-auto flex items-center space-x-2">
-                <select class="px-2 py-1 border border-gray-300 rounded-md">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <div class="flex items-center ml-2">
-                  <span class="text-sm text-gray-500">Stok:</span>
-                  <span class="text-lg font-bold">${product.stok}</span>
-                </div>
+    <div class="flex-none w-80 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-2">
+      <a href="#" class="block">
+        <div class="relative">
+          <img src="${product.gambar}" alt="${product.nama_produk}" class="h-64 w-full object-cover rounded-t-xl" />
+          <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
+        </div>
+        <div class="px-4 py-3">
+          <span class="text-gray-400 mr-3 uppercase text-xs">${product.deskripsi}</span>
+          <p class="text-lg font-bold text-black truncate capitalize">${product.nama_produk}</p>
+          <div class="flex items-center mt-2">
+            <p class="text-lg font-semibold text-black">${formattedPrice}</p>
+            <div class="ml-auto flex items-center space-x-2">
+              <select class="px-2 py-1 border border-gray-300 rounded-md">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              <div class="flex items-center ml-2">
+                <span class="text-sm text-gray-500">Stok:</span>
+                <span class="text-lg font-bold">${product.stok}</span>
+              </div>
+              <!-- Icon Keranjang -->
+              <div class="ml-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-gray-500">
+                  <path d="M6 2a1 1 0 011 1v1h6V3a1 1 0 011-1h4a1 1 0 011 1v1h1a1 1 0 011 1v1a1 1 0 01-1 1h-1.382l-1.296 6.32a3 3 0 01-2.942 2.68H6.62a3 3 0 01-2.942-2.68L2 6H1a1 1 0 011-1h1V3a1 1 0 011-1h4zM7 10h6v1H7v-1zM6 12a1 1 0 100 2 1 1 0 000-2zM14 12a1 1 0 100 2 1 1 0 000-2zM5 16a1 1 0 100 2 1 1 0 000-2zM15 16a1 1 0 100 2 1 1 0 000-2z" />
+                </svg>
               </div>
             </div>
           </div>
-        </a>
-      </div>
-    `;
-    productContainer.innerHTML += productCard;
+        </div>
+      </a>
+    </div>
+  `;
+  
+  productContainer.innerHTML += productCard;
+  
   });
 }
 
 // Adjust category dropdown
-const filterContainer = document.createElement("div");
-filterContainer.className = "filter-container my-4 w-1/4"; // Sidebar styling
-filterContainer.innerHTML = `
-  <label for="category-dropdown" class="block mb-2 text-lg font-semibold">Pilih Kategori:</label>
-  <select id="category-dropdown" class="w-full px-2 py-1 border rounded-md">
-    <option value="All">Semua</option>
-  </select>
-`;
-
-
 
 
 
