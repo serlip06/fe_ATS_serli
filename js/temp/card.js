@@ -3,13 +3,14 @@ import { urlAPI } from "../config/url_produk.js";
 function initializeApp() {
   // Create main container
   const appContainer = document.getElementById("app");
+  appContainer.className = "flex flex-row items-start gap-4"; // Use flexbox for layout
 
   // Create filter container
   const filterContainer = document.createElement("div");
-  filterContainer.className = "filter-container my-4";
+  filterContainer.className = "filter-container my-4 w-1/4"; // Sidebar styling
   filterContainer.innerHTML = `
     <label for="category-dropdown" class="block mb-2 text-lg font-semibold">Pilih Kategori:</label>
-    <select id="category-dropdown" class="px-4 py-2 border rounded-md">
+    <select id="category-dropdown" class="w-full px-4 py-2 border rounded-md">
       <option value="All">Semua</option>
     </select>
   `;
@@ -17,7 +18,7 @@ function initializeApp() {
   // Create product container
   const productContainer = document.createElement("div");
   productContainer.id = "product-container";
-  productContainer.className = "flex flex-wrap justify-start gap-4";
+  productContainer.className = "flex flex-wrap justify-start gap-4 w-3/4"; // Adjust width
 
   // Append elements to app container
   appContainer.appendChild(filterContainer);
@@ -99,10 +100,10 @@ function updateProductCards(data) {
     const formattedPrice = formatCurrency(product.harga);
 
     const productCard = `
-      <div class="flex-none w-64 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-2">
+      <div class="flex-none w-80 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-2">
         <a href="#" class="block">
           <div class="relative">
-            <img src="${product.gambar}" alt="${product.nama_produk}" class="h-48 w-full object-cover rounded-t-xl" />
+            <img src="${product.gambar}" alt="${product.nama_produk}" class="h-64 w-full object-cover rounded-t-xl" />
             <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
           </div>
           <div class="px-4 py-3">
@@ -132,5 +133,34 @@ function updateProductCards(data) {
   });
 }
 
+// Adjust category dropdown
+const filterContainer = document.createElement("div");
+filterContainer.className = "filter-container my-4 w-1/4"; // Sidebar styling
+filterContainer.innerHTML = `
+  <label for="category-dropdown" class="block mb-2 text-lg font-semibold">Pilih Kategori:</label>
+  <select id="category-dropdown" class="w-full px-2 py-1 border rounded-md">
+    <option value="All">Semua</option>
+  </select>
+`;
+
+
+
+
+
 // Initialize application
 initializeApp();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loadingContainer = document.getElementById("loading-container");
+  const productContainer = document.getElementById("app");
+  const cardProduct = document.getElementById("card-product");
+
+  // Simulasi pengambilan data (gunakan fetch() untuk API sungguhan)
+  setTimeout(() => {
+      // Data telah berhasil dimuat
+      loadingContainer.style.display = "none"; // Sembunyikan loading indicator
+      cardProduct.classList.remove("hidden"); // Tampilkan kartu produk
+  }, 2000); // Simulasi 2 detik untuk loading
+});
+
+loadingContainer.classList.add("fade-out");

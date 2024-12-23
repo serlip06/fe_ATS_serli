@@ -41,9 +41,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Nabla&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
-    
-
 </head>
+
+<style>
+  .hidden {
+    display: none;
+}
+
+</style>
 <body
 
     <header class="sticky top-0 bg-white z-50 py-4">
@@ -86,7 +91,7 @@
                     <!-- Product results will be displayed here -->
                 </div>
                 
-                <div id="app" class="container mx-auto my-8 px-4"></div>
+              
 
                 
             </ul>
@@ -113,14 +118,11 @@
         </nav>
     </header>
     </div>
-    <div class=" ">
-      
 
         <!-- CARD 1 -->
-
-        <div class="flex flex-col min-h-screen">
+        <div id="" class="flex flex-col min-h-screen">
             <!-- Main Content -->
-            <div class="flex flex-wrap justify-center flex-grow" id="product-container">
+            <div  id="app" class="flex flex-wrap justify-center flex-grow" id="product-container">
                 <!-- Loading Indicator -->
                 <div class="flex flex-wrap justify-center" id="loading-container">
                     <div class="w-65 bg-white shadow-md rounded-xl m-2 flex justify-center items-center h-80 relative">
@@ -135,7 +137,7 @@
                 </div>
         
                 <!-- Start of card (hidden initially) -->
-                <div id="card-product" class="w-65 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-2 hidden">
+                <div id="card-product" style="display: none;" class="w-65 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-2">
                     <a href="#" id="link-product">
                         <img id="gambarmakan" src="https://i.pinimg.com/originals/45/1c/3a/451c3a2537616f5d5d06750972b5458e.jpg"
                             alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
