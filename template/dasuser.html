@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - User</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="/js/temp/keranjang.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- Links -->
@@ -41,7 +42,7 @@
       <nav class="mt-6 space-y-4">
         <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition duration-200">
           <span class="material-icons text-blue-700 mr-3">list_alt</span>
-          <span class="font-medium">Pesanan</span>
+          <span class="font-medium">Pesanan</span> 
         </a>
         <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition duration-200">
           <span class="material-icons text-blue-700 mr-3">list_alt</span>
@@ -161,66 +162,55 @@
 </div>
 
 
-
-  <!-- Keranjang Modal -->
-<div id="keranjang" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+<!-- Keranjang Modal -->
+<div id="keranjang" class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
   <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
   <div class="fixed inset-0 overflow-hidden">
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-        <div class="pointer-events-auto w-screen max-w-md">
-          <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-              <div class="flex items-start justify-between">
-                <h2 class="text-lg font-medium font text-gray-900" id="slide-over-title">Keranjang Anda</h2>
-                <div class="ml-3 flex h-7 items-center">
-                  <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500" id="closeKeranjang">
-                    <span class="absolute -inset-0.5"></span>
-                    <span class="sr-only">Close panel</span>
-                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div class="mt-8">
-                <div class="flow-root">
-                  <ul role="list" class="-my-6 divide-y divide-gray-200">
-                    <li class="flex py-6">
-                      <div class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img src="https://tailwindui.com/plus/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Product image" class="size-full object-cover">
+      <div class="absolute inset-0 overflow-hidden">
+          <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+              <div class="pointer-events-auto w-screen max-w-md">
+                  <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                      <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                          <div class="flex items-start justify-between">
+                              <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Keranjang Anda</h2>
+                              <div class="ml-3 flex h-7 items-center">
+                                  <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500" id="closeKeranjang">
+                                      <span class="sr-only">Close panel</span>
+                                      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                      </svg>
+                                  </button>
+                              </div>
+                          </div>
+                          <div class="mt-8">
+                              <div class="flow-root">
+                                  <ul role="list" class="-my-6 divide-y divide-gray-200" id="keranjangList">
+                                      <!-- Data dari API akan dimasukkan di sini oleh JavaScript -->
+                                  </ul>
+                              </div>
+                          </div>
                       </div>
-                      <div class="ml-4 flex flex-1 flex-col">
-                        <div class="flex justify-between text-base font-medium text-gray-900">
-                          <h3><a href="#">Product Name</a></h3>
-                          <p class="ml-4">$90.00</p>
-                        </div>
-                        <div class="flex flex-1 items-end justify-between text-sm">
-                          <p class="text-gray-500">Qty 1</p>
-                          <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                        </div>
+                      <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+                          <div class="flex justify-between text-base font-medium text-gray-900">
+                              <p>Subtotal</p>
+                              <p id="subtotal">Rp 0</p>
+                          </div>
+                          <p class="mt-0.5 text-sm text-gray-500">Pengiriman dan pajak dihitung saat checkout.</p>
+                          <div class="mt-6">
+                              <a href="#" id="checkoutButton" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                                  Checkout
+                              </a>
+                          </div>
+                          <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+                              <p>
+                                  atau <a href="./pagemakan.html" id="continueShopping" class="font-medium text-indigo-600 hover:text-indigo-500">Lanjutkan Belanja</a>
+                              </p>
+                          </div>
                       </div>
-                    </li>
-                  </ul>
-                </div>
+                  </div>
               </div>
-            </div>
-            <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
-              <div class="flex justify-between text-base font-medium text-gray-900">
-                <p>Subtotal</p>
-                <p>$262.00</p>
-              </div>
-              <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-              <div class="mt-6">
-                <a href="#" id="checkoutButton" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
-                  Checkout
-                </a>
-              </div>
-            </div>
           </div>
-        </div>
       </div>
-    </div>
   </div>
 </div>
 
@@ -478,5 +468,8 @@
       document.getElementById('pembayaran').classList.add('hidden');
     });
   </script>
+
+  <script src="../js/temp/keranjang.js"></script>
+
 </body>
 </html>

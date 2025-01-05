@@ -118,7 +118,8 @@ function initializeCategoryDropdown(products) {
   });
 }
 
-function updateProductCards(data) {
+// Function to update product cards with cart functionality
+function updateProductCardsWithCart(data) {
   const productContainer = document.getElementById("product-container");
   productContainer.innerHTML = ""; // Clear existing content
 
@@ -138,7 +139,8 @@ function updateProductCards(data) {
           <div class="flex items-center mt-2">
             <p class="text-lg font-semibold text-black">${formattedPrice}</p>
             <div class="ml-auto flex items-center space-x-2">
-              <select class="px-2 py-1 border border-gray-300 rounded-md">
+              <select class="px-2 py-1 border border-gray-300 rounded-md" id="quantity-${product._id}">
+                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -150,7 +152,7 @@ function updateProductCards(data) {
                 <span class="text-lg font-bold">${product.stok}</span>
               </div>
               <!-- Icon Keranjang -->
-              <div class="ml-2">
+              <div class="ml-2 cursor-pointer" onclick="addToCart('${product._id}', '${product.nama_produk}', ${product.harga})">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-gray-500">
                   <path d="M6 2a1 1 0 011 1v1h6V3a1 1 0 011-1h4a1 1 0 011 1v1h1a1 1 0 011 1v1a1 1 0 01-1 1h-1.382l-1.296 6.32a3 3 0 01-2.942 2.68H6.62a3 3 0 01-2.942-2.68L2 6H1a1 1 0 011-1h1V3a1 1 0 011-1h4zM7 10h6v1H7v-1zM6 12a1 1 0 100 2 1 1 0 000-2zM14 12a1 1 0 100 2 1 1 0 000-2zM5 16a1 1 0 100 2 1 1 0 000-2zM15 16a1 1 0 100 2 1 1 0 000-2z" />
                 </svg>
@@ -161,10 +163,43 @@ function updateProductCards(data) {
       </a>
     </div>
   `;
-  
+
   productContainer.innerHTML += productCard;
-  
   });
+}
+
+// Function to send data to the cart
+function addToCart(productId, productName, price) {
+  const quantity = parseInt(document.getElementById(`quantity-${productId}`).value);
+
+  if (quantity > 0) {
+    const data = {
+      id_produk: productId,
+      NamaProduk: productName,
+      harga: price,
+      quantity: quantity
+    };
+
+    // Send the data to the endpoint using a POST request
+    fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/insertchartitem', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      alert('Item added to cart!');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('Failed to add item to cart.');
+    });
+  } else {
+    alert('Please select a valid quantity.');
+  }
 }
 
 // Adjust category dropdown
