@@ -13,6 +13,9 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="../js/main.js"></script>
     <script type="module" src="../js/fetch.js"></script>
+    <script type="module" src="../js/temp/card.js"></script>
+    <script type="module" src="../js/temp/keranjang.js"></script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
@@ -123,10 +126,11 @@
     </header>
     </div>
 
-  <!-- CARD 1 -->
+<!-- Main Content -->
 <div class="flex flex-col min-h-screen">
-  <!-- Main Content -->
+  <!-- App container that holds the content -->
   <div id="app" class="flex-grow flex flex-col justify-center relative">
+    
     <!-- Loading Indicator -->
     <div id="loading-container" class="absolute inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
       <div class="flex justify-center items-center">
@@ -135,12 +139,14 @@
         </svg>
       </div>
     </div>
-    <!-- Data Section -->
+    
+
+    <!-- Data Section (Products and content will be dynamically added here) -->
     <div id="data-container" class="p-4">
-      <!-- Data content will be dynamically added here -->
-      
+      <!-- This section will be populated with dynamic content (products, cards, etc.) -->
     </div>
   </div>
+</div>
   <!-- Footer -->
    <!-- ===== footer ===== -->
    <footer class=" py-6 mt-auto">
