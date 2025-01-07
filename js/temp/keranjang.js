@@ -61,9 +61,14 @@ function renderKeranjang(data) {
                     </div>
                     <div class="flex flex-1 items-end justify-between text-sm">
                         <p class="text-gray-500">Qty: ${item.quantity}</p>
-                        <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500" onclick="removeItem('${item._id}')">
-                            Hapus
-                        </button>
+                     <button 
+    type="button" 
+    class="font-medium text-indigo-600 hover:text-indigo-500" 
+    onclick="removeItem('${item._id}')">
+    Hapus
+</button>
+
+
                     </div>
                 </div>
             `;
@@ -78,11 +83,10 @@ function renderKeranjang(data) {
     }
 }
 
-
 async function removeItem(id) {
     try {
-        // Kirim permintaan DELETE ke API dengan ID dalam query string
-        const response = await fetch(`https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/deletechartitem?_id=`, {
+        // Kirim permintaan DELETE ke API hanya dengan ID dalam query string
+        const response = await fetch(`https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/deletechartitem?_id=${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -91,7 +95,8 @@ async function removeItem(id) {
 
         // Periksa apakah respons berhasil
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            const errorMessage = await response.text(); // Ambil pesan error dari respons
+            throw new Error(`Gagal menghapus item: ${errorMessage}`);
         }
 
         console.log(`Item dengan ID ${id} berhasil dihapus`);
@@ -100,10 +105,11 @@ async function removeItem(id) {
         // Panggil ulang fungsi untuk memuat ulang data
         fetchAndRenderData();
     } catch (error) {
-        console.error("Error deleting item:", error);
-        alert("Gagal menghapus item. Silakan coba lagi.");
+        console.error("Error deleting item:", error.message);
+        alert(`Gagal menghapus item. Silakan coba lagi.\nDetail: ${error.message}`);
     }
 }
+
 
 
 

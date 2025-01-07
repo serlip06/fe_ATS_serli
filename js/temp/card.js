@@ -118,6 +118,7 @@ function initializeCategoryDropdown(products) {
   });
 }
 
+
 function updateProductCards(data) {
   const productContainer = document.getElementById("product-container");
   productContainer.innerHTML = ""; // Clear existing content
@@ -138,7 +139,7 @@ function updateProductCards(data) {
           <div class="flex items-center mt-2">
             <p class="text-lg font-semibold text-black product-price">${formattedPrice}</p>
             <div class="ml-auto flex items-center space-x-2">
-              <select class="px-2 py-1 border border-gray-300 rounded-md" id="quantity-${product.id_produk}">
+              <select class="px-2 py-1 border border-gray-300 rounded-md">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -150,11 +151,22 @@ function updateProductCards(data) {
                 <span class="text-lg font-bold">${product.stok}</span>
               </div>
               <!-- Icon Keranjang -->
-              <div class="ml-2" id="addtocart-${product.id_produk}">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-gray-500">
-                  <path d="M6 2a1 1 0 011 1v1h6V3a1 1 0 011-1h4a1 1 0 011 1v1h1a1 1 0 011 1v1a1 1 0 01-1 1h-1.382l-1.296 6.32a3 3 0 01-2.942 2.68H6.62a3 3 0 01-2.942-2.68L2 6H1a1 1 0 011-1h1V3a1 1 0 011-1h4zM7 10h6v1H7v-1zM6 12a1 1 0 100 2 1 1 0 000-2zM14 12a1 1 0 100 2 1 1 0 000-2zM5 16a1 1 0 100 2 1 1 0 000-2zM15 16a1 1 0 100 2 1 1 0 000-2z" />
-                </svg>
-              </div>
+             <div class="ml-2">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 20 20" 
+              fill="url(#gradient)" 
+              class="w-6 h-6 text-gray-500 hover:scale-110 transition-transform duration-200 ease-in-out" >
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color: #4f46e5; stop-opacity: 1" />
+                  <stop offset="100%" style="stop-color: #9333ea; stop-opacity: 1" />
+                </linearGradient>
+              </defs>
+              <path d="M6 2a1 1 0 011 1v1h6V3a1 1 0 011-1h4a1 1 0 011 1v1h1a1 1 0 011 1v1a1 1 0 01-1 1h-1.382l-1.296 6.32a3 3 0 01-2.942 2.68H6.62a3 3 0 01-2.942-2.68L2 6H1a1 1 0 011-1h1V3a1 1 0 011-1h4zM7 10h6v1H7v-1zM6 12a1 1 0 100 2 1 1 0 000-2zM14 12a1 1 0 100 2 1 1 0 000-2zM5 16a1 1 0 100 2 1 1 0 000-2zM15 16a1 1 0 100 2 1 1 0 000-2z" />
+            </svg>
+          </div>
+
             </div>
           </div>
         </div>
@@ -167,55 +179,7 @@ function updateProductCards(data) {
   });
 }
 
-// Fungsi untuk menambahkan item ke keranjang
-function addToCart(idProduk, namaProduk, harga) {
-  const quantityElement = document.getElementById(`quantity-${idProduk}`);
-  const quantity = quantityElement ? quantityElement.value : 1; // Default to 1 if no quantity selected
 
-  // Buat data untuk dikirim ke API
-  const cartData = {
-    id_keranjang: generateCartId(),
-    id_produk: idProduk,
-    nama_produk: namaProduk,
-    harga: harga,
-    quantity: quantity,
-  };
-
-  // Kirim data ke API
-  fetch("https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/insertchartitem", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(cartData),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Gagal menambahkan item ke keranjang");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Item berhasil ditambahkan ke keranjang:", data);
-      if (typeof Swal !== "undefined") {
-        Swal.fire({
-          icon: "success",
-          title: "Berhasil!",
-          text: "Item berhasil ditambahkan ke keranjang",
-        });
-      }
-    })
-    .catch((error) => {
-      console.error("Kesalahan saat menambahkan item ke keranjang:", error);
-      if (typeof Swal !== "undefined") {
-        Swal.fire({
-          icon: "error",
-          title: "Terjadi Kesalahan!",
-          text: error.message,
-        });
-      }
-    });
-}
 
 // Fungsi untuk menambahkan event listener pada setiap ikon keranjang
 function setupCartButtons() {
