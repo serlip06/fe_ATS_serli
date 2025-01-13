@@ -4,9 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - User</title>
+
+   <!-- Favicon -->
+   <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/512/4312/4312094.png">
+   
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="/js/temp/keranjang.js"></script>
   <script defer src="/js/temp/keranjang.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- Links -->
@@ -500,6 +507,37 @@
     document.getElementById('closePembayaran').addEventListener('click', function () {
       document.getElementById('pembayaran').classList.add('hidden');
     });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mengambil data produk keranjang dari API
+      fetch("https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/chartitem")
+        .then(response => response.json())
+        .then(data => {
+          const cartItemCount = data.length; // Hitung jumlah item dalam keranjang
+          updateCartItemCount(cartItemCount); // Memperbarui jumlah produk pada ikon keranjang
+        })
+        .catch(error => {
+          console.error("Terjadi kesalahan saat mengambil data keranjang:", error);
+        });
+    });
+    
+    function updateCartItemCount(count) {
+      const cartIcon = document.getElementById("toggleKeranjang");
+      
+      // Cek apakah elemen jumlah sudah ada, jika ada update, jika belum buat
+      let itemCountElement = document.getElementById("cart-item-count");
+      if (!itemCountElement) {
+        itemCountElement = document.createElement("span");
+        itemCountElement.id = "cart-item-count";
+        itemCountElement.className = "ml-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center";
+        cartIcon.appendChild(itemCountElement); // Menambahkan elemen jumlah ke ikon keranjang
+      }
+    
+      itemCountElement.textContent = count; // Menampilkan jumlah produk
+    }
+    
   </script>
 
   <script src="../js/temp/keranjang.js"></script>
