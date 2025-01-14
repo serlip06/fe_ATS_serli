@@ -244,7 +244,7 @@
                     const result = await response.json();
                     alert(result.message); // Menampilkan pesan sukses
                     // Redirect ke halaman lain jika login berhasil
-                    window.location.href = "../template/index.html";
+                    window.location.href = "../template/dasuser.html";
                 } else {
                     const error = await response.json();
                     alert(`Login gagal: ${error.message}`);
