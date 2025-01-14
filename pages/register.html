@@ -42,7 +42,7 @@
                 </a>
             </h1>
         </div>
-        
+        <!-- <a href="/pages/login.html"></a> -->
         <!-- Centered food icon -->
         <div class="col-span-4 flex justify-center items-center">
             <a href="../template/index.html" class="mr-4">
@@ -72,16 +72,21 @@
         <div class="md:w-1/2 px-8">
             <h2 class="font-bold text-3xl text-[#002D74]">Register</h2>
             <p class="text-sm mt-4 text-[#002D74]">If you already a member, easily register now.</p>
-
-            <form action="" class="flex flex-col gap-4">
-                <input class="p-2 mt-2 rounded-xl border" type="email" name="email" placeholder="Nama">
-                <input class="p-2 mt-2 rounded-xl border" type="email" name="email" placeholder="Usermame">
-                <input class="p-2 mt-2 rounded-xl border" type="email" name="email" placeholder="Email">
+            <!-- form register -->
+            <form action="" id="registerForm" class="flex flex-col gap-4">
+                <input class="p-2 mt-2 rounded-xl border" type="username" name="username" id="username" placeholder="username">
+                <!-- <label for="role">Role</label> -->
+                <select class="p-2 mt-2 rounded-xl border" name="role" id="role">
+                    <option value="Pilih">Pilih Role</option>
+                    <option value="customer">Customer</option>
+                    <option value="operator">Operator</option>
+                    <option value="kasir">Kasir</option>
+                </select>
             
                 
                 
                 <div class="relative">
-                    <input class="p-2 rounded-xl border w-full" type="password" name="password" id="password" placeholder="Password">
+                    <input class="p-2 rounded-xl border w-full" type="password"  id="password"   name="password" id="password" placeholder="Password">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" id="togglePassword"
                         class="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer z-20 opacity-100"
                         viewBox="0 0 16 16">
@@ -132,6 +137,105 @@
         </div>
     </div>
 </section>
+
+<!-- sript untuk javascriptnya  -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("registerForm");
+      const usernameInput = document.getElementById("username");
+      const passwordInput = document.getElementById("password");
+      const roleInput = document.getElementById("role");
+  
+      form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+  
+          // Ambil nilai input
+          const username = usernameInput.value.trim();
+          const password = passwordInput.value.trim();
+          const role = roleInput.value;
+  
+          // Validasi input
+          if (!username) {
+              alert("Username tidak boleh kosong");
+              usernameInput.focus();
+              return;
+          }
+  
+          if (!password) {
+              alert("Password tidak boleh kosong");
+              passwordInput.focus();
+              return;
+          }
+  
+          if (!role || role === "Pilih") {
+              alert("Role harus dipilih");
+              roleInput.focus();
+              return;
+          }
+  
+          // Data untuk dikirim ke server
+          const data = {
+              username: username,
+              password: password,
+              role: role
+          };
+  
+          try {
+              // Kirim data registrasi ke server
+              const response = await fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/register', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+              });
+  
+              if (response.ok) {
+                  const result = await response.json();
+                  console.log("Registrasi berhasil, respons:", result);
+  
+                  // Ambil userId dari respons server
+                  const userId = result.userId;
+                  console.log("ID User untuk approval:", userId);
+  
+                  // Jika role adalah "customer", otomatis approve
+                  if (role === "customer" && userId) {
+                      try {
+                          const approveResponse = await fetch(`https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/approve-regis/${userId}`, {
+                              method: 'POST'
+                          });
+  
+                          if (approveResponse.ok) {
+                              console.log("Akun customer berhasil diapprove.");
+                              alert("Registrasi berhasil! Akun Anda telah diaktifkan.");
+                              window.location.href = "/pages/login.html"; // Redirect ke halaman login
+                          } else {
+                              console.error("Gagal mengaktifkan akun customer:", approveResponse.statusText);
+                              alert("Registrasi berhasil, tetapi terjadi kesalahan saat mengaktifkan akun.");
+                          }
+                      } catch (error) {
+                          console.error("Error saat meng-approve akun:", error);
+                          alert("Registrasi berhasil, tetapi terjadi kesalahan saat mengaktifkan akun.");
+                      }
+                  } else {
+                      // Untuk role operator atau kasir
+                      alert("Registrasi berhasil! Silakan tunggu konfirmasi dari admin.");
+                  }
+              } else {
+                  const error = await response.json();
+                  console.error("Gagal mendaftar, respons:", error);
+                  alert(`Gagal mendaftar: ${error.message}`);
+              }
+          } catch (error) {
+              console.error("Error:", error);
+              alert("Terjadi kesalahan saat mencoba mendaftar.");
+          }
+      });
+  });
+  </script>
+  
+
     
 <!-- ===== footer ===== -->
 <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
