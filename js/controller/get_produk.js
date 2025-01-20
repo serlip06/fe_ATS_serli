@@ -27,6 +27,7 @@ function isiRow(value) {
             .replace("#HARGA#", formatCurrency(value.harga) || 'Rp. 0,00')
             .replace("#STOK#", value.stok || 'N/A')
             .replace("#KATEGORI#", value.kategori || 'N/A')
+            .replace("#CREATED#", value.created_at || 'N/A')
             .replace("#GAMBAR#", value.gambar || 'default-image.png') // Fallback to a default image if no image URL is provided
             .replace("#IDEDIT#", value._id || 'N/A')
             .replace("#IDHAPUS#", value._id || 'N/A')
@@ -34,3 +35,4 @@ function isiRow(value) {
             .replace(/#WARNALOGO#/g, getRandomColorName());
     addInner("iniTabel", content);
 }
+

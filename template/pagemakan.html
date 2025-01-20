@@ -277,6 +277,74 @@
   document.getElementById('card-product').classList.remove('hidden');
 
 </script>
+
+<script>
+// Fungsi untuk membuat notifikasi popup
+function showNotification(message) {
+  // Cek apakah elemen notifikasi sudah ada
+  let notification = document.getElementById("notification");
+  if (!notification) {
+      // Jika belum ada, buat elemen notifikasi baru
+      notification = document.createElement("div");
+      notification.id = "notification";
+      notification.style.position = "fixed";
+      notification.style.top = "50%";
+      notification.style.left = "50%";
+      notification.style.transform = "translate(-50%, -50%)";
+      notification.style.zIndex = "1000";
+      notification.style.backgroundColor = "#fff";
+      notification.style.border = "1px solid #ddd";
+      notification.style.borderRadius = "8px";
+      notification.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+      notification.style.padding = "16px";
+      notification.style.width = "300px";
+      notification.style.textAlign = "center";
+      notification.style.fontFamily = "'Poppins', sans-serif";
+      notification.style.fontSize = "16px";
+      notification.style.color = "#333";
+
+      // Tambahkan tombol tutup
+      const closeButton = document.createElement("button");
+      closeButton.textContent = "OK";
+      closeButton.style.marginTop = "16px";
+      closeButton.style.padding = "8px 16px";
+      closeButton.style.backgroundColor = "#4f46e5";
+      closeButton.style.color = "#fff";
+      closeButton.style.border = "none";
+      closeButton.style.borderRadius = "4px";
+      closeButton.style.cursor = "pointer";
+      closeButton.style.fontSize = "14px";
+
+      closeButton.addEventListener("click", () => {
+          notification.style.display = "none";
+          window.location.href = "/pages/login.html"; // Redirect ke halaman login
+      });
+
+      // Tambahkan teks dan tombol ke notifikasi
+      notification.appendChild(document.createElement("p"));
+      notification.appendChild(closeButton);
+
+      // Tambahkan elemen notifikasi ke body
+      document.body.appendChild(notification);
+  }
+
+  // Set pesan dan tampilkan notifikasi
+  notification.querySelector("p").textContent = message;
+  notification.style.display = "block";
+}
+
+// Event listener untuk ikon dengan class "bi-person-circle"
+document.querySelector(".bi-person-circle").parentElement.addEventListener("click", (event) => {
+  const username = localStorage.getItem("username");
+
+  if (!username) {
+      event.preventDefault(); // Mencegah redirect ke halaman lain
+      showNotification("Anda Harus Login & Registrasi Terlebih Dahulu");
+  }
+});
+
+
+</script>
 <script src="../js/controller/post_keranjang.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/controller/search.js"></script>

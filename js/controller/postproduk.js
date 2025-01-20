@@ -23,7 +23,7 @@ form.addEventListener('submit', async (event) => {
 
     try {
         // Kirim data ke API
-        const response = await fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/insertproduk', {
+        const response = await fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/add-product', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

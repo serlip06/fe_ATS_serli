@@ -40,6 +40,17 @@ function renderKeranjang(data) {
             const listItem = document.createElement("li");
             listItem.classList.add("flex", "py-6");
             listItem.innerHTML = `
+                <div class="flex items-center">
+                    <!-- Checkbox untuk memilih produk -->
+                    <input 
+                        type="checkbox" 
+                        id="checkbox-${item._id}" 
+                        class="mr-4 w-5 h-5 text-blue-500 focus:ring-blue-400 border-gray-300 rounded" 
+                        data-id="${item._id}" 
+                        data-name="${item.nama_produk}" 
+                        data-price="${item.harga}" 
+                        data-quantity="${item.quantity}">
+                </div>
                 <div class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
                     <img src="${item.gambar}" alt="Gambar produk" class="size-full object-cover">
                 </div>
@@ -61,10 +72,11 @@ function renderKeranjang(data) {
                                 data-id="${item._id}">
                         </div>
                         <button 
-                            class="inline-block px-3 py-1 bg-blue-500 text-white rounded-lg cursor-pointer shadow-md active:scale-95 transition-transform" 
-                            type="button" 
-                            onclick="updateQuantity('${item._id}')">
-                            Update
+                          class="inline-block px-3 py-1 bg-blue-500 text-white rounded-lg cursor-pointer shadow-md active:scale-95 transition-transform" 
+    type="button" 
+    data-id="${item._id}" 
+    onclick="handleUpdateQuantity(this)">
+    Update
                         </button>
                         <button 
                             class="inline-block px-3 py-1 bg-red-500 text-white rounded-lg cursor-pointer shadow-md active:scale-95 transition-transform" 
@@ -76,13 +88,27 @@ function renderKeranjang(data) {
                 </div>
             `;
             keranjangList.appendChild(listItem);
-        });
+        }
+        );
+
 
         subtotalElement.textContent = `Rp ${subtotal.toLocaleString()}`;
     } else {
         keranjangList.innerHTML = "<p class='text-gray-500'>Keranjang Anda kosong.</p>";
         subtotalElement.textContent = "Rp 0";
     }
+}
+
+// Fungsi untuk menambahkan event listener pada tombol update
+function addUpdateEventListeners() {
+    const updateButtons = document.querySelectorAll(".bg-blue-500");
+
+    updateButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const productId = button.getAttribute("data-id");
+            updateQuantity(productId); // Panggil fungsi updateQuantity
+        });
+    });
 }
 
 // Fungsi untuk mengupdate jumlah produk
@@ -109,37 +135,21 @@ function updateQuantity(productId) {
         },
         body: JSON.stringify(dataToUpdate)
     })
-    .then(response => {
-        // Mengecek jika response tidak JSON, mencoba mengonversinya menjadi teks
-        if (!response.ok) {
-            throw new Error("Gagal mengupdate produk. Periksa apakah ID produk valid.");
-        }
-
-        // Cek jenis konten response
-        const contentType = response.headers.get("content-type");
-        if (contentType && contentType.includes("application/json")) {
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Gagal mengupdate produk. Periksa apakah ID produk valid.");
+            }
             return response.json();
-        } else {
-            return response.text(); // Jika bukan JSON, ambil sebagai teks
-        }
-    })
-    .then(result => {
-        if (typeof result === "string") {
-            // Jika response berupa teks, tampilkan sebagai pesan
-            alert(result);
-        } else if (result.success) {
-            alert("Jumlah produk berhasil diupdate.");
+        })
+        .then(result => {
+            alert(result.message || "Jumlah produk berhasil diupdate.");
             fetchAndRenderData(); // Memperbarui keranjang setelah quantity diupdate
-        } else {
+        })
+        .catch(error => {
+            console.error("Error updating quantity:", error);
             alert("Gagal mengupdate jumlah produk.");
-        }
-    })
-    .catch(error => {
-        console.error("Error updating quantity:", error);
-        alert("Gagal mengupdate jumlah produk.");
-    });
+        });
 }
-
 
 // Fungsi untuk menghapus data berdasarkan ID
 function deleteData(IDHAPUS) {

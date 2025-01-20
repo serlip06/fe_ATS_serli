@@ -9,13 +9,13 @@
    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/512/4312/4312094.png">
    
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="/js/temp/keranjang.js"></script>
-  <script defer src="/js/temp/keranjang.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="/js/temp/keranjang.js"></script>
+    <script defer src="/js/temp/keranjang.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- Links -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -38,6 +38,55 @@
     #notification-panel {
       display: none;
     }
+
+    body {
+    
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    .bg-white {
+      background-color: white;
+    }
+
+    .rounded {
+      border-radius: 8px;
+    }
+
+    .shadow {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .space-x-4 > * + * {
+      margin-left: 16px;
+    }
+
+    .hover\:bg-gray-300:hover {
+      background-color: #e2e2e2;
+    }
+
+    .hover\:underline:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    a#logoutButton:hover {
+      background-color: #ffe5e5; /* Warna latar merah muda saat hover */
+      color: #ff0000; /* Teks merah */
+  }
+  
   </style>
 </head>
 <body class="bg-gray-100">
@@ -91,40 +140,39 @@
         <!-- Profile Info -->
         <div class="flex items-center space-x-4">
           <div class="relative">
-            <img src="./jpg/qinthar.jpg" alt="Profile" class="w-16 h-16 rounded-full border-2 border-blue-700">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s" alt="Profile" class="w-16 h-16 rounded-full border-2 border-blue-700">
             <div id="notification-indicator" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
               !
             </div>
           </div>
           <div>
             <h2 class="text-xl font-semibold">Muhammad Qinthar</h2>
-            <p class="text-sm text-gray-600">+62 812 3456 7890</p>
-            <p class="text-sm text-gray-600">qintharalmaliki@gmail.com</p>
+          
           </div>
         </div>
         <!-- Actions -->
         <div class="flex items-center space-x-4">
           <a href="./pagemakan.html" class="text-blue-700 hover:underline">Back</a>
-          <button class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800">
-            Edit Profil
-          </button>
+          <a id="logoutButton" class="text-red hover:underline border border-red-500 px-3 py-1 rounded cursor-pointer">Logout</a>
           <button id="toggle-notifications" class="bg-gray-200 text-blue-700 px-4 py-2 rounded hover:bg-gray-300">
             Lihat Notifikasi
           </button>
         </div>
       </div>
 
-      <!-- Notification Panel -->
-      <div id="notification-panel" class="mb-6">
-        <h3 class="text-lg font-semibold mb-4">Notifikasi</h3>
-        <div class="bg-white p-4 rounded shadow">
-          <p class="text-sm">Produk baru telah ditambahkan: <span class="font-semibold">"Pizza Margherita"</span></p>
-          <p class="text-sm mt-2">Diskon spesial untuk produk: <span class="font-semibold">"Burger Sapi"</span></p>
+      <div class="container mx-auto mt-10">
+          <!-- Notification Panel -->
+          <div id="notification-panel" class="mb-6 bg-white p-4 rounded shadow">
+            <h3 class="text-lg font-semibold mb-4">Notifikasi</h3>
+            <!-- Konten notifikasi akan dimuat oleh JavaScript -->
+            <div class="bg-gray-200 p-4 rounded">
+              <p class="text-sm text-gray-600">Memuat notifikasi produk terbaru...</p>
+            </div>
+          </div>
         </div>
-      </div>
 <!-- Main Content Placeholder -->
 <div class="bg-white p-6 rounded shadow mb-6">
-  <h3 class="text-xl font-semibold">Selamat Datang, Qinthar</h3>
+ 
   <p class="mt-2 text-gray-600">Gunakan sidebar untuk menavigasi fitur-fitur dashboard.</p>
 </div>
 
@@ -184,47 +232,40 @@
 
 <!-- Keranjang Modal -->
 <div id="keranjang" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-  <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+  <div class="fixed inset-0 bg-gray-500/50" aria-hidden="true"></div>
   <div class="fixed inset-0 overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">
-      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full">
         <div class="pointer-events-auto w-screen max-w-md">
           <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-              <div class="flex items-start justify-between">
-                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Keranjang Anda</h2>
-                <div class="ml-3 flex h-7 items-center">
-                  <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500" id="closeKeranjang">
-                    <span class="sr-only">Close panel</span>
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div class="mt-8">
-                <div class="flow-root">
-                  <ul role="list" class="-my-6 divide-y divide-gray-200" id="keranjangList">
-                    <!-- Data dari API akan dimasukkan di sini oleh JavaScript -->
-                  </ul>
-                </div>
-              </div>
+            <!-- Header -->
+            <div class="flex items-center justify-between px-4 py-3 bg-indigo-600 text-white">
+              <h2 class="text-lg font-medium" id="slide-over-title">Keranjang Anda</h2>
+              <button type="button" class="p-2 hover:bg-indigo-700 rounded-full" id="closeKeranjang">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
-            <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
-              <div class="flex justify-between text-base font-medium text-gray-900">
+            <!-- Konten -->
+            <div class="flex-1 overflow-y-auto px-4 py-4">
+              <ul id="keranjangList" class="divide-y divide-gray-200">
+                <!-- Data akan dimuat di sini -->
+              </ul>
+            </div>
+            <!-- Footer -->
+            <div class="border-t px-4 py-4">
+              <div class="flex justify-between text-base font-medium text-gray-800">
                 <p>Subtotal</p>
                 <p id="subtotal">Rp 0</p>
               </div>
-              <p class="mt-0.5 text-sm text-gray-500">Pengiriman dan pajak dihitung saat checkout.</p>
-              <div class="mt-6">
-                <a href="#" id="checkoutButton" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+              <div class="mt-4">
+                <button id="checkoutButton" class="w-full bg-indigo-600 text-white rounded-md py-2 hover:bg-indigo-700">
                   Checkout
-                </a>
+                </button>
               </div>
-              <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
-                <p>
-                  atau <a href="./pagemakan.html" id="continueShopping" class="font-medium text-indigo-600 hover:text-indigo-500">Lanjutkan Belanja</a>
-                </p>
+              <div class="mt-2 text-sm text-center text-gray-500">
+                <p>atau <a href="./pagemakan.html" class="text-indigo-600 hover:text-indigo-500">Lanjutkan Belanja</a></p>
               </div>
             </div>
           </div>
@@ -233,6 +274,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- Script untuk menampilkan dan menutup modal -->
 <script>
@@ -458,7 +500,6 @@
 
 
   <script>
-    
     document.getElementById('toggle-notifications').addEventListener('click', function() {
       const panel = document.getElementById('notification-panel');
       const indicator = document.getElementById('notification-indicator');
@@ -539,6 +580,115 @@
     }
     
   </script>
+  <script>
+
+    const urlAPI = "https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/produk";
+
+    async function loadLatestProduct() {
+      try {
+        console.log("Mengambil data produk...");
+        const response = await fetch(urlAPI);
+        if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
+    
+        const products = await response.json();
+        console.log("Data produk dari API:", products);
+    
+        // Validasi bahwa data adalah array
+        const productsArray = Array.isArray(products) ? products : products.data || [];
+        if (!Array.isArray(productsArray)) throw new Error("Data produk tidak valid");
+    
+        // Filter produk valid berdasarkan created_at
+        const validProducts = productsArray.filter(product => {
+          if (!product.created_at) return false;
+          const parsedDate = Date.parse(product.created_at); // Validasi format tanggal
+          return !isNaN(parsedDate);
+        });
+    
+        console.log("Produk valid sebelum disortir:", validProducts);
+    
+        // Urutkan produk berdasarkan created_at (terlama di atas, terbaru di bawah)
+        validProducts.sort((a, b) => {
+          const dateA = new Date(a.created_at);
+          const dateB = new Date(b.created_at);
+          return dateA - dateB; // Urutkan terlama ke terbaru
+        });
+    
+        console.log("Produk setelah disortir (terbaru di bawah):", validProducts);
+    
+        // Ambil produk terakhir (terbaru)
+        const latestProduct = validProducts[validProducts.length - 1];
+    
+        const notificationPanel = document.getElementById("notification-panel");
+    
+        if (latestProduct) {
+          const latestProductHTML = `
+            <div class="p-4 bg-green-100 rounded">
+              <h4 class="text-md font-bold text-green-700">Produk Terbaru: ${latestProduct.nama_produk}</h4>
+              <p class="text-sm text-gray-600">${latestProduct.deskripsi}</p>
+              <p class="text-sm font-semibold text-gray-800">Harga: Rp${latestProduct.harga.toLocaleString()}</p>
+          <p class="text-xs text-gray-600 mt-2">
+            Ayo Beli Sebelum Kehabisan!
+            <a href="./pagemakan.html" class="text-blue-600 hover:underline">Click</a>
+          </p>
+
+              <p class="text-xs text-gray-400 mt-2">Dibuat pada: ${new Date(latestProduct.created_at).toLocaleString()}</p>
+            </div>
+          `;
+          notificationPanel.innerHTML = `
+            <h3 class="text-lg font-semibold mb-4">Notifikasi</h3>
+            ${latestProductHTML}
+          `;
+        } else {
+          throw new Error("Tidak ada produk yang ditemukan.");
+        }
+      } catch (error) {
+        console.error("Terjadi kesalahan:", error.message);
+        document.getElementById("notification-panel").innerHTML = `
+          <h3 class="text-lg font-semibold mb-4">Notifikasi</h3>
+          <p class="text-sm text-red-600">Gagal memuat notifikasi produk: ${error.message}</p>
+        `;
+      }
+    }
+    
+    document.addEventListener("DOMContentLoaded", loadLatestProduct);
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Ambil username dari localStorage
+      const username = localStorage.getItem('username');
+  
+      // Ambil elemen <h2> berdasarkan kelasnya
+      const greetingElement = document.querySelector('.text-xl.font-semibold');
+  
+      // Jika username tersedia, tampilkan
+      if (username) {
+          greetingElement.innerHTML = `Halo, ${username} 👋`;
+      } else {
+          // Jika tidak ada username, tampilkan teks default
+          greetingElement.innerHTML = 'Halo, Guest';
+      }
+  });
+  
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const logoutButton = document.getElementById("logoutButton");
+  
+      logoutButton.addEventListener("click", function () {
+          // Hapus data dari local storage
+          localStorage.removeItem("username");
+          localStorage.removeItem("role");
+  
+          // Redirect ke halaman login
+          window.location.href = "./index.html";
+      });
+  });
+  
+  </script>
+  
+ 
+  
+
 
   <script src="../js/temp/keranjang.js"></script>
   <script src="../js/controller/delete_keranjang.js"></script>

@@ -141,20 +141,21 @@ function updateProductCards(data) {
                 <span class="text-lg font-bold">${product.stok}</span>
               </div>
               <div class="ml-2 cursor-pointer add-to-cart" data-id="${product._id}">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  viewBox="0 0 20 20" 
-                  fill="url(#gradient)" 
-                  class="w-6 h-6 text-gray-500 hover:scale-110 transition-transform duration-200 ease-in-out"
-                  data-id="${product._id}">
-                  <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" style="stop-color: #4f46e5; stop-opacity: 1" />
-                      <stop offset="100%" style="stop-color: #9333ea; stop-opacity: 1" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M6 2a1 1 0 011 1v1h6V3a1 1 0 011-1h4a1 1 0 011 1v1h1a1 1 0 011 1v1a1 1 0 01-1 1h-1.382l-1.296 6.32a3 3 0 01-2.942 2.68H6.62a3 3 0 01-2.942-2.68L2 6H1a1 1 0 011-1h1V3a1 1 0 011-1h4zM7 10h6v1H7v-1zM6 12a1 1 0 100 2 1 1 0 000-2zM14 12a1 1 0 100 2 1 1 0 000-2zM5 16a1 1 0 100 2 1 1 0 000-2zM15 16a1 1 0 100 2 1 1 0 000-2z" />
-                </svg>
+              <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 20 20" 
+    fill="url(#gradient)" 
+    class="w-6 h-6 text-gray-500 hover:scale-110 transition-transform duration-200 ease-in-out"
+    data-id="${product._id}" 
+    id="cart-icon">
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color: #4f46e5; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #9333ea; stop-opacity: 1" />
+        </linearGradient>
+    </defs>
+    <path d="M6 2a1 1 0 011 1v1h6V3a1 1 0 011-1h4a1 1 0 011 1v1h1a1 1 0 011 1v1a1 1 0 01-1 1h-1.382l-1.296 6.32a3 3 0 01-2.942 2.68H6.62a3 3 0 01-2.942-2.68L2 6H1a1 1 0 011-1h1V3a1 1 0 011-1h4zM7 10h6v1H7v-1zM6 12a1 1 0 100 2 1 1 0 000-2zM14 12a1 1 0 100 2 1 1 0 000-2zM5 16a1 1 0 100 2 1 1 0 000-2zM15 16a1 1 0 100 2 1 1 0 000-2z" />
+</svg>
               </div>
             </div>
           </div>
@@ -177,9 +178,136 @@ function updateProductCards(data) {
       saveToApi(productId, quantity); // Kirim data ke API
     });
   });
+
+  // Fungsi untuk membuat notifikasi popup
+  function showNotification(message) {
+    // Cek apakah elemen notifikasi sudah ada
+    let notification = document.getElementById("notification");
+    if (!notification) {
+        // Jika belum ada, buat elemen notifikasi baru
+        notification = document.createElement("div");
+        notification.id = "notification";
+        notification.style.position = "fixed";
+        notification.style.top = "50%";
+        notification.style.left = "50%";
+        notification.style.transform = "translate(-50%, -50%)";
+        notification.style.zIndex = "1000";
+        notification.style.backgroundColor = "#fff";
+        notification.style.border = "1px solid #ddd";
+        notification.style.borderRadius = "8px";
+        notification.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+        notification.style.padding = "16px";
+        notification.style.width = "300px";
+        notification.style.textAlign = "center";
+        notification.style.fontFamily = "'Poppins', sans-serif";
+        notification.style.fontSize = "16px";
+        notification.style.color = "#333";
+
+        // Tambahkan tombol tutup
+        const closeButton = document.createElement("button");
+        closeButton.textContent = "OK";
+        closeButton.style.marginTop = "16px";
+        closeButton.style.padding = "8px 16px";
+        closeButton.style.backgroundColor = "#4f46e5";
+        closeButton.style.color = "#fff";
+        closeButton.style.border = "none";
+        closeButton.style.borderRadius = "4px";
+        closeButton.style.cursor = "pointer";
+        closeButton.style.fontSize = "14px";
+
+        closeButton.addEventListener("click", () => {
+            notification.style.display = "none";
+            window.location.href = "/pages/login.html"; // Redirect ke halaman login
+        });
+
+        // Tambahkan teks dan tombol ke notifikasi
+        notification.appendChild(document.createElement("p"));
+        notification.appendChild(closeButton);
+
+        // Tambahkan elemen notifikasi ke body
+        document.body.appendChild(notification);
+    }
+
+    // Set pesan dan tampilkan notifikasi
+    notification.querySelector("p").textContent = message;
+    notification.style.display = "block";
+  }
+
+  // Event listener untuk ikon keranjang
+  document.getElementById("cart-icon").addEventListener("click", (event) => {
+    const username = localStorage.getItem("username");
+
+    if (!username) {
+        event.preventDefault(); // Mencegah redirect ke halaman lain
+        showNotification("Sebelum Belanja, Harus Login Dulu Ya");
+    }
+    // Jika ada username, lanjutkan proses untuk menambahkan produk ke keranjang
+    else {
+        // Tindakan lain jika sudah login, misalnya menambahkan produk ke keranjang
+        console.log("User sudah login:", username);
+    }
+  });
 }
 
 function saveToApi(id_produk, quantity) {
+  // Cek apakah ada username di localStorage
+  const username = localStorage.getItem("username");
+
+  // Jika tidak ada username, tampilkan notifikasi dan hentikan proses
+  if (!username) {
+    // Membuat elemen notifikasi custom (pop-up)
+    let notification = document.getElementById("notification");
+    if (!notification) {
+      // Jika belum ada, buat elemen notifikasi baru
+      notification = document.createElement("div");
+      notification.id = "notification";
+      notification.style.position = "fixed";
+      notification.style.top = "50%";
+      notification.style.left = "50%";
+      notification.style.transform = "translate(-50%, -50%)";
+      notification.style.zIndex = "1000";
+      notification.style.backgroundColor = "#fff";
+      notification.style.border = "1px solid #ddd";
+      notification.style.borderRadius = "8px";
+      notification.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+      notification.style.padding = "16px";
+      notification.style.width = "300px";
+      notification.style.textAlign = "center";
+      notification.style.fontFamily = "'Poppins', sans-serif";
+      notification.style.fontSize = "16px";
+      notification.style.color = "#333";
+
+      // Tambahkan tombol tutup
+      const closeButton = document.createElement("button");
+      closeButton.textContent = "Login";
+      closeButton.style.marginTop = "16px";
+      closeButton.style.padding = "8px 16px";
+      closeButton.style.backgroundColor = "#4CAF50";
+      closeButton.style.color = "#fff";
+      closeButton.style.border = "none";
+      closeButton.style.borderRadius = "4px";
+      closeButton.style.cursor = "pointer";
+      closeButton.style.fontSize = "14px";
+
+      closeButton.addEventListener("click", () => {
+        notification.style.display = "none";
+        window.location.href = "/pages/login.html"; // Redirect ke halaman login
+      });
+
+      // Tambahkan teks dan tombol ke notifikasi
+      notification.appendChild(document.createElement("p"));
+      notification.appendChild(closeButton);
+
+      // Tambahkan elemen notifikasi ke body
+      document.body.appendChild(notification);
+    }
+
+    // Set pesan dan tampilkan notifikasi
+    notification.querySelector("p").textContent = "Anda Harus Login Dulu, Sebelum Berbelanja";
+    notification.style.display = "block";
+    return; // Hentikan eksekusi fungsi jika belum login
+  }
+
   // Data yang akan dikirimkan ke API
   const data = {
     id_produk: id_produk,
@@ -219,8 +347,8 @@ function saveToApi(id_produk, quantity) {
       confirmButtonColor: '#e74c3c',
     });
   });
-  
 }
+
 
 // Initialize application
 initializeApp();
