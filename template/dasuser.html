@@ -122,10 +122,10 @@
           <span class="font-medium">Keranjang</span>
         </a>
         
-        <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition duration-200">
+        <!-- <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition duration-200">
           <span class="material-icons text-blue-700 mr-3">favorite</span>
           <span class="font-medium">Menu Favorit</span>
-        </a>
+        </a> -->
 
         <button id="openPembayaran">
           
@@ -342,35 +342,150 @@
                   </div>
                 </div>
 
-                <!-- Payment Details -->
-                <div class="mt-10">
-                  <h3 class="text-lg font-medium text-gray-900">Payment Details</h3>
-                  <div class="mt-4 space-y-4">
-                    <div>
-                      <label for="payment-method" class="block text-sm font-medium text-gray-700">Payment Method</label>
-                      <select id="payment-method" name="payment-method" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                        <option value="dana">DANA</option>
-                        <option value="bni">BNI</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label for="total" class="block text-sm font-medium text-gray-700">Total Amount</label>
-                      <input type="text" id="total" name="total" value="$262.00" readonly class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <!-- Payment Details -->
+<div class="mt-10">
+  <h3 class="text-lg font-medium text-gray-900">Payment Details</h3>
+  <div class="mt-4 space-y-4">
+    <div>
+      <label for="payment-method" class="block text-sm font-medium text-gray-700">Payment Method</label>
+      <div class="custom-select">
+       <div class="custom-select">
+    
+        <div class="select-items select-hide flex space-x-4">
+          <!-- DANA -->
+          <div data-value="dana" class="payment-option flex items-center">
+            <input type="checkbox" id="dana-checkbox" class="payment-checkbox w-5 h-5" onclick="toggleInfo('dana')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png" alt="DANA Logo" class="w-10 h-auto ml-2">
+            <span class="ml-2"></span>
+        </div>
+        <div id="dana-info" class="hidden ml-8 p-4 rounded-lg border border-blue-300 bg-blue-50 text-sm text-gray-700 shadow-md">
+          <div class="flex items-center space-x-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1 4h-1m-1-6h1V9h1m-2 3h1m4.5-4.5A2.5 2.5 0 0117.5 10m0 0a2.5 2.5 0 11-5 0m5 0v6m-5 0v-6m0 6a2.5 2.5 0 005 0m-5 0a2.5 2.5 0 005 0" />
+              </svg>
+              <h3 class="font-semibold text-blue-600">Informasi DANA</h3>
+          </div>
+          <p class="mt-2">Nomor DANA: <span class="font-medium text-gray-900">0812-3456-7890</span></p>
+          <div class="mt-2">
+              <button class="inline-block px-3 py-1 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                  Salin Nomor
+              </button>
+          </div>
+      </div>
+      
 
-              <!-- Checkout Button -->
-              <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
-                <div class="mt-6">
-                  <button class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
-                    Confirm Payment
-                  </button>
-                </div>
-                <div class="mt-4 text-sm text-gray-500">
-                  <p>Please ensure your payment details are correct before proceeding.</p>
-                </div>
+        <!-- BNI -->
+        <div data-value="bni" class="payment-option flex items-center">
+            <input type="checkbox" id="bni-checkbox" class="payment-checkbox w-5 h-5" onclick="toggleInfo('bni')">
+            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/2560px-BNI_logo.svg.png" alt="BNI Logo" class="w-10 h-auto ml-2">
+            <span class="ml-2"></span>
+        </div>
+        <div id="bni-info" class="hidden ml-8 p-4 rounded-lg border border-orange-300 bg-orange-50 text-sm text-gray-700 shadow-md">
+          <div class="flex items-center space-x-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2l4-4m7-2a9 9 0 11-18 0a9 9 0 0118 0z" />
+              </svg>
+              <h3 class="font-semibold text-orange-600">Informasi Rekening BNI</h3>
+          </div>
+          <p class="mt-2">Rekening BNI: <span class="font-medium text-gray-900">123-456-7890</span></p>
+          <div class="mt-2">
+              <button class="inline-block px-3 py-1 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 focus:ring-2 focus:ring-orange-400 focus:outline-none">
+                  Salin Rekening
+              </button>
+          </div>
+      </div>
+      
+        <script>
+          function toggleInfo(paymentType) {
+              // Ambil elemen informasi berdasarkan tipe pembayaran
+              const infoElement = document.getElementById(`${paymentType}-info`);
+              const checkbox = document.getElementById(`${paymentType}-checkbox`);
+      
+              // Tampilkan atau sembunyikan informasi berdasarkan status checkbox
+              if (checkbox.checked) {
+                  infoElement.classList.remove('hidden');
+              } else {
+                  infoElement.classList.add('hidden');
+              }
+          }
+
+          document.querySelector("#dana-info button").addEventListener("click", () => {
+            navigator.clipboard.writeText("0812-3456-7890").then(() => {
+                alert("Nomor DANA berhasil disalin!");
+            }).catch(err => {
+                console.error("Gagal menyalin teks:", err);
+            });
+        });
+        
+      </script>
+        <div data-value="cash" class="payment-option flex items-center">
+            <input type="checkbox" class="payment-checkbox w-5 h-5">
+            <img src="https://images.seeklogo.com/logo-png/38/1/cash-app-logo-png_seeklogo-380008.png" alt="Cash Logo" class="w-6 h-auto ml-2">
+            <span class="ml-2"></span>
+        </div>
+        
+      </div>      
+    </div>
+
+
+<!-- Tempat untuk menampilkan informasi tambahan -->
+<div id="payment-info" style="margin-top: 10px;"></div>
+    </div>
+    </div>
+    <div>
+      <label for="total" class="block text-sm font-medium text-gray-700">Total Amount</label>
+      <input type="text" id="total" name="total" value="$262.00" readonly class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+    </div>
+
+    <!-- Bukti Pembayaran -->
+    <div>
+      <label for="payment-proof" class="block text-sm font-medium text-gray-700">Bukti Pembayaran</label>
+      <input type="file" id="payment-proof" name="payment-proof" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:bg-gray-50 file:text-indigo-700 hover:file:bg-indigo-100">
+    </div>
+  </div>
+</div>
+
+<!-- Delivery Option -->
+<div class="mt-6">
+  <label class="inline-flex items-center text-sm font-medium text-gray-700">
+    <input type="checkbox" id="delivery-option" class="form-checkbox text-indigo-600">
+    <span class="ml-2">Diantar?</span>
+  </label>
+
+  <!-- Alamat text box, hidden by default -->
+  <div id="alamat-container" class="mt-4 hidden">
+    <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat Pengiriman</label>
+    <textarea id="alamat" name="alamat" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+  </div>
+</div>
+
+<!-- Checkout Button -->
+<div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+  <div class="mt-6">
+    <button class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+      Confirm Pesanan Anda
+    </button>
+  </div>
+  <div class="mt-4 text-sm text-gray-500">
+    <p>Please ensure your payment details are correct before proceeding.</p>
+  </div>
+</div>
+
+<script>
+  // Tambahkan event listener untuk checkbox "Diantar?"
+  const deliveryCheckbox = document.getElementById("delivery-option");
+  const alamatContainer = document.getElementById("alamat-container");
+
+  deliveryCheckbox.addEventListener("change", function() {
+    if (deliveryCheckbox.checked) {
+      alamatContainer.classList.remove("hidden"); // Menampilkan text box untuk alamat
+    } else {
+      alamatContainer.classList.add("hidden"); // Menyembunyikan text box untuk alamat
+    }
+  });
+</script>
+
+
               </div>
             </div>
           </div>
@@ -552,33 +667,56 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // Mengambil id_user dari localStorage
+      const idUser = localStorage.getItem("id");
+      if (!idUser) {
+          console.error("ID User tidak ditemukan di localStorage.");
+          return;
+      }
+  
       // Mengambil data produk keranjang dari API
       fetch("https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/chartitem")
-        .then(response => response.json())
-        .then(data => {
-          const cartItemCount = data.length; // Hitung jumlah item dalam keranjang
-          updateCartItemCount(cartItemCount); // Memperbarui jumlah produk pada ikon keranjang
-        })
-        .catch(error => {
-          console.error("Terjadi kesalahan saat mengambil data keranjang:", error);
-        });
-    });
-    
-    function updateCartItemCount(count) {
+          .then(response => response.json())
+          .then(data => {
+              // Filter data produk berdasarkan id_user
+              const userCartItems = data.filter(item => item.id_user === idUser);
+  
+              // Hitung jumlah item dalam keranjang untuk user tertentu
+              const cartItemCount = userCartItems.length;
+              updateCartItemCount(cartItemCount); // Memperbarui jumlah produk pada ikon keranjang
+          })
+          .catch(error => {
+              console.error("Terjadi kesalahan saat mengambil data keranjang:", error);
+          });
+  });
+  
+  function updateCartItemCount(count) {
       const cartIcon = document.getElementById("toggleKeranjang");
       
+      // Ganti elemen cartIcon dengan gambar PNG jika belum ada
+      let cartImageElement = document.getElementById("cart-icon-image");
+      if (!cartImageElement) {
+          cartImageElement = document.createElement("img");
+          cartImageElement.id = "cart-icon-image";
+          cartImageElement.src = "https://cdn-icons-png.flaticon.com/512/3639/3639167.png"; // Gambar keranjang
+          cartImageElement.alt = "Keranjang";
+          cartImageElement.className = "w-6 h-6"; // Ukuran gambar
+          cartIcon.appendChild(cartImageElement); // Menambahkan gambar ke ikon keranjang
+      }
+  
       // Cek apakah elemen jumlah sudah ada, jika ada update, jika belum buat
       let itemCountElement = document.getElementById("cart-item-count");
       if (!itemCountElement) {
-        itemCountElement = document.createElement("span");
-        itemCountElement.id = "cart-item-count";
-        itemCountElement.className = "ml-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center";
-        cartIcon.appendChild(itemCountElement); // Menambahkan elemen jumlah ke ikon keranjang
+          itemCountElement = document.createElement("span");
+          itemCountElement.id = "cart-item-count";
+          itemCountElement.className = "ml-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center";
+          cartIcon.appendChild(itemCountElement); // Menambahkan elemen jumlah ke ikon keranjang
       }
-    
-      itemCountElement.textContent = count; // Menampilkan jumlah produk
-    }
-    
+  
+      // Menampilkan jumlah produk di keranjang
+      itemCountElement.textContent = count;
+  }
+  
   </script>
   <script>
 

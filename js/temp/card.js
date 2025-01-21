@@ -314,39 +314,77 @@ function saveToApi(id_produk, quantity) {
     quantity: parseInt(quantity),
   };
 
-  // Mengirimkan data ke API menggunakan fetch
-  fetch("https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/insertchartitem", {
+  /// Ambil ID User dari localStorage
+const idUser = localStorage.getItem("id");
+
+// Validasi jika ID User tidak ditemukan
+if (!idUser) {
+    Swal.fire({
+        icon: 'warning',
+        title: 'ID User Tidak Ditemukan!',
+        text: 'Pastikan Anda sudah login.',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#e74c3c',
+    });
+    throw new Error("ID User tidak ditemukan di localStorage.");
+}
+
+// Data produk yang akan dikirim
+const payload = {
+    id_user: idUser, // ID user dari localStorage
+    id_produk: id_produk, // ID produk
+    quantity: parseInt(quantity, 10), // Pastikan quantity dalam format integer
+   
+};
+
+// Mengirimkan data ke API menggunakan fetch
+fetch("https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/insertchartitem", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+        "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
-  })
-  .then((response) => response.json())
-  .then((data) => {
-    Swal.fire({
-      icon: 'success',
-      title: 'Produk Berhasil Ditambahkan!',
-      text: `ID: ${id_produk}, Qty: ${quantity}`,
-      confirmButtonText: 'Tutup',
-      confirmButtonColor: '#4CAF50',  // Warna tombol
-      background: '#f0f8ff',  // Warna latar belakang
-      customClass: {
-        title: 'font-poppins text-xl',  // Menambahkan font dan ukuran
-      }
+    body: JSON.stringify(payload), // Mengirimkan payload
+})
+    .then((response) => response.json())
+    .then((result) => {
+        if (result.success) { // Sesuaikan kondisi ini dengan respons API Anda
+            Swal.fire({
+                icon: 'success',
+                title: 'Produk Berhasil Ditambahkan!',
+                text: `ID: ${id_produk}, Qty: ${quantity}`,
+                confirmButtonText: 'Tutup',
+                confirmButtonColor: '#4CAF50',
+                background: '#f0f8ff',
+                customClass: {
+                    title: 'font-poppins text-xl',
+                },
+            });
+        } else {
+            Swal.fire({
+              icon: 'success',
+              title: 'Produk Berhasil Ditambahkan!',
+              text: `ID: ${id_produk}, Qty: ${quantity}`,
+              confirmButtonText: 'Tutup',
+              confirmButtonColor: '#4CAF50',
+              background: '#f0f8ff',
+              customClass: {
+                  title: 'font-poppins text-xl',
+              },
+            });
+        }
+        console.log("Response dari API:", result);
+    })
+    .catch((error) => {
+        console.error("Terjadi kesalahan saat mengirim data ke API:", error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Terjadi Kesalahan!',
+            text: error.message || 'Tidak dapat terhubung ke server.',
+            confirmButtonText: 'Coba Lagi',
+            confirmButtonColor: '#e74c3c',
+        });
     });
-    console.log("Response dari API:", data);
-  })
-  .catch((error) => {
-    console.error("Terjadi kesalahan saat mengirim data ke API:", error);
-    Swal.fire({
-      icon: 'error',
-      title: 'Terjadi Kesalahan!',
-      text: error.message,
-      confirmButtonText: 'Coba Lagi',
-      confirmButtonColor: '#e74c3c',
-    });
-  });
+
 }
 
 

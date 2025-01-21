@@ -181,76 +181,103 @@
   <!-- script javascripynta  -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("loginForm"); // Mengambil elemen form dengan ID 'loginForm'
-        const usernameInput = document.getElementById("username");
-        const passwordInput = document.getElementById("password");
-        const roleInput = document.getElementById("role");
+      const form = document.getElementById("loginForm");
+      const usernameInput = document.getElementById("username");
+      const passwordInput = document.getElementById("password");
+      const roleInput = document.getElementById("role");
+  
+      form.addEventListener("submit", async function (event) {
+          event.preventDefault(); // Mencegah pengiriman form secara default
+  
+          // Ambil nilai input dari form
+          const username = usernameInput.value.trim();
+          const password = passwordInput.value.trim();
+          const role = roleInput.value;
+  
+          // Validasi input
+          if (!username) {
+              alert("Username tidak boleh kosong");
+              usernameInput.focus();
+              return;
+          }
+  
+          if (!password) {
+              alert("Password tidak boleh kosong");
+              passwordInput.focus();
+              return;
+          }
+  
+          if (!role) {
+              alert("Role harus dipilih");
+              roleInput.focus();
+              return;
+          }
+  
+          // Data untuk dikirim ke server
+          const data = {
+              username: username,
+              password: password,
+              role: role
+          };
+  
+          try {
+              // Kirim data ke endpoint login menggunakan fetch
+              const response = await fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/login', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+              });
+  
+              if (response.ok) {
+                  const result = await response.json();
+                  console.log('Hasil login:', result);
+  
+                  // Gunakan endpoint get all untuk mencari ID pengguna
+                  const userResponse = await fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/user');
+                  
+                  if (userResponse.ok) {
+                      const users = await userResponse.json();
+                      console.log('Data semua pengguna:', users);
+  
+                      // Cari pengguna berdasarkan username yang sesuai dengan input
+                      const userData = users.find(user => user.username === username); // Hanya berdasarkan username yang dimasukkan saat login
+  
+                      if (userData) {
+                         // Pastikan data yang disimpan adalah data yang valid
+                        localStorage.setItem('id', userData.id);
+                        localStorage.setItem('username', userData.username); // Akurat dari data user di server
+                        localStorage.setItem('role', userData.role);
 
-        form.addEventListener("submit", async function (event) {
-            event.preventDefault(); // Mencegah pengiriman form secara default
+                        // Periksa role dan arahkan ke halaman yang sesuai
+                        if (userData.role === "operator" || userData.role === "kasir") {
+                            window.location.href = "../template/dashboard.html";
+                        } else if (userData.role === "customer") {
+                            window.location.href = "../template/dasuser.html";
+                        } else {
+                            alert("Role tidak valid. Hubungi admin untuk bantuan.");
+                        }
 
-            // Ambil nilai input dari form
-            const username = usernameInput.value.trim();
-            const password = passwordInput.value.trim();
-            const role = roleInput.value;
-
-            // Validasi input
-            if (!username) {
-                alert("Username tidak boleh kosong");
-                usernameInput.focus();
-                return;
-            }
-
-            if (!password) {
-                alert("Password tidak boleh kosong");
-                passwordInput.focus();
-                return;
-            }
-
-            if (!role) {
-                alert("Role harus dipilih");
-                roleInput.focus();
-                return;
-            }
-
-            // Data untuk dikirim ke server
-            const data = {
-                username: username,
-                password: password,
-                role: role
-            };
-
-            try {
-                // Kirim data ke endpoint menggunakan fetch
-                const response = await fetch('https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-                    const result = await response.json();
-
-                    // Simpan data ID, username, dan role ke localStorage
-                    localStorage.setItem('username', username);
-                    localStorage.setItem('role', role);
-
-                    alert(result.message); // Menampilkan pesan sukses
-
-                    // Redirect ke halaman lain jika login berhasil
-                    window.location.href = "../template/dasuser.html";
-                } else {
-                    const error = await response.json();
-                    alert(`Login gagal: ${error.message}`);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Terjadi kesalahan saat mencoba login.');
-            }
-        });
-    });
+                      } else {
+                          alert('Pengguna tidak ditemukan dalam data.');
+                      }
+                  } else {
+                      const errorDetails = await userResponse.json();
+                      console.error('Error saat mengambil data pengguna:', errorDetails);
+                      alert(`Gagal mengambil data pengguna: ${errorDetails.message || 'Unknown error'}`);
+                  }
+              } else {
+                  const error = await response.json();
+                  alert(`Login gagal: ${error.message}`);
+              }
+          } catch (error) {
+              console.error('Error:', error);
+              alert('Terjadi kesalahan saat mencoba login.');
+          }
+      });
+  });
+  
 </script>
 
 
