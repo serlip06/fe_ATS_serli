@@ -250,137 +250,62 @@
                             </div>
                         </div>
                     </div> -->
+                    <div class="container mx-auto px-4 py-6">
+                      <div class="bg-white shadow-lg rounded-lg p-6">
+                        <h2 class="text-3xl font-sans font-semibold text-black my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">
+                          Order Management
+                        </h2>
                     
-                    <!-- My Orders Section -->
-<div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-    <div class="mx-auto max-w-5xl">
-      <div class="gap-4 sm:flex sm:items-center sm:justify-between">
-        <h2 class="text-2xl font-semibold text-gray-900 dark:text-black sm:text-3xl"></h2>
-      </div>
-  
-      <div class="mt-6 flow-root sm:mt-8">
-        <div class="divide-y divide-gray-200 dark:divide-gray-700">
-          <!-- Order 1 -->
-          <div class="flex flex-wrap items-center gap-y-4 py-6  rounded-lg shadow-lg">
-            <dl class="w-full sm:w-1/2 lg:w-auto lg:flex-1 flex justify-between">
-              <div class="flex-1">
-                <dt class="text-base font-medium text-gray-500 dark:text-black">Order ID:</dt>
-                <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-black">
-                  <a href="#" class="hover:underline">#FWB127364372</a>
-                </dd>
-              </div>
-              <div class="flex-1">
-                <dt class="text-base font-medium text-gray-500 dark:text-black">Date:</dt>
-                <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-black">20.12.2023</dd>
-              </div>
-              <div class="flex-1">
-                <dt class="text-base font-medium text-gray-500 dark:text-gray-black">Price:</dt>
-                <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-black">$4,756</dd>
-              </div>
-              <div class="flex-1">
-                <dt class="text-base font-medium text-gray-500 dark:text-black">Status:</dt>
-                <div class="relative mt-1.5">
-                    <!-- Dropdown Button -->
-                    <button id="status-dropdown" type="button" class="inline-flex items-center justify-between w-full rounded bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300">
-                        <svg class="me-1 h-3 w-3 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span id="status-text">Completed</span>
-                        <svg class="ml-2 h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <!-- Dropdown Menu -->
-                    <div id="status-options" class="absolute z-10 hidden mt-1 w-full rounded-md bg-white shadow-lg dark:bg-gray-700">
-                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
-                            <li>
-                                <a href="#" data-status="Completed" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <svg class="me-1 h-4 w-4 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        <div class="overflow-x-auto relative">
+                          <table class="table-auto w-full border-collapse border border-gray-300 rounded-lg overflow-hidden">
+                            <thead>
+                              <tr class="bg-blue-100">
+                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">ORDER ID</th>
+                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">DATE</th>
+                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">PRICE</th>
+                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">BUKTI PEMBAYARAN</th>
+                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">ALAMAT</th>
+                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">STATUS</th>
+                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">ACTION</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!-- Contoh baris 1 -->
+                              <tr class="hover:bg-gray-100">
+                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">ORD001</td>
+                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">2025-01-20</td>
+                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">$100</td>
+                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">
+                                  <a href="#" class="text-blue-500 hover:underline">View</a>
+                                </td>
+                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">123 Main Street</td>
+                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">
+                                  <select class="border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option>✔ Completed</option>
+                                    <option>⏳ Pending</option>
+                                    <option>❌ Dibatalkan</option>
+                                  </select>
+                                </td>
+                                <td class="border border-gray-300 px-4 py-2 text-center text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">
+                                  <button class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full shadow-lg transform transition duration-300 hover:scale-110 flex items-center gap-2">
+                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                     </svg>
-                                    Completed
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-status="Pending" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <svg class="me-1 h-4 w-4 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10" />
-                                        <circle cx="12" cy="12" r="3" />
+                                    <span class="hidden md:inline"></span>
+                                    <svg class="w-5 h-5 md:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                                     </svg>
-                                    Pending
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-status="Dibatalkan" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    <svg class="me-1 h-4 w-4 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                    Dibatalkan
-                                </a>
-                            </li>
-                        </ul>
+                                  </button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
                     </div>
-                </div>
-            </div>
-            
-            <script>
-                // Handle dropdown toggle
-                document.getElementById('status-dropdown').addEventListener('click', () => {
-                    const options = document.getElementById('status-options');
-                    options.classList.toggle('hidden');
-                });
-            
-                // Handle dropdown selection
-                document.querySelectorAll('#status-options a').forEach(option => {
-                    option.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const statusText = e.target.dataset.status || e.target.innerText.trim();
-                        const statusDropdown = document.getElementById('status-dropdown');
-                        const statusDisplay = document.getElementById('status-text');
-            
-                        // Update dropdown text and color
-                        statusDisplay.textContent = statusText;
-            
-                        // Update dropdown styles
-                        const classes = {
-                            "Completed": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-                            "Pending": "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
-                            "Dibatalkan": "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300",
-                        };
-            
-                        Object.values(classes).forEach(cls => statusDropdown.classList.remove(...cls.split(' ')));
-                        statusDropdown.classList.add(...classes[statusText].split(' '));
-                    });
-                });
-            </script>
-            
-            </dl>
-  
-            <div class="w-full grid sm:grid-cols-2 lg:flex lg:items-center lg:justify-end gap-2">
-                <!-- Submit Order Button -->
-                <button type="button" class="w-auto rounded-lg border border-green-700 px-3 py-1 text-center text-xs font-medium text-green-700 hover:bg-green-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-green-300 dark:border-green-500 dark:text-green-500 dark:hover:bg-green-600 dark:hover:text-white dark:focus:ring-green-900">
-                    <svg class="inline-block w-3 h-3 mr-1 text-green-700 dark:text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Submit Order
-                </button>
-            
-                <!-- View Details Button -->
-                <a href="#" class="w-auto inline-flex justify-center rounded-lg border border-gray-300 bg-white px-3 py-1 text-xs font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
-                    View details
-                </a>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  </div>
-  
+                    </div>
+                    </div>
                     
-             
    <!-- ===== footer ===== -->
    <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
     <div class="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
