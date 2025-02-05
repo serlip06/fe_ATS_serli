@@ -108,14 +108,15 @@ function renderKeranjang(data) {
                               max="${item.stok}" 
                               data-id="${item._id}">
                       </div>
-                      <!-- Button Update -->
-                      <button 
-                          class="inline-block px-3 py-1 bg-blue-500 text-white rounded-lg cursor-pointer shadow-md active:scale-95 transition-transform" 
-                          type="button" 
-                          data-id="${item._id}" 
-                          onclick="handleUpdateQuantity(this)">
-                          Update
-                      </button>
+                      <!-- Button Update -->   
+                    <button 
+                        class="inline-block px-3 py-1 bg-blue-500 text-white rounded-lg cursor-pointer shadow-md active:scale-95 transition-transform" 
+                        type="button" 
+                        data-id="${item._id}" 
+                        onclick="handleUpdateQuantity(this)">
+                        Update
+                    </button>
+
                       <!-- Button Delete -->
                       <button 
                           class="inline-block px-3 py-1 bg-red-500 text-white rounded-lg cursor-pointer shadow-md active:scale-95 transition-transform" 
@@ -137,7 +138,12 @@ function renderKeranjang(data) {
     }
 }
 
-// Fungsi untuk menambahkan event listener ke checkbox
+document.addEventListener("DOMContentLoaded", function () {
+    addCheckboxListeners();
+    document.querySelector("#checkoutButton").addEventListener("click", checkout);
+    document.getElementById("confirmCheckout").addEventListener("click", processPayment);
+});
+
 function addCheckboxListeners() {
     const checkboxes = document.querySelectorAll(".checkbox-item");
     checkboxes.forEach(checkbox => {
@@ -145,67 +151,150 @@ function addCheckboxListeners() {
     });
 }
 
-// Fungsi untuk menghitung subtotal berdasarkan checkbox yang dicentang
 function updateSubtotal() {
     const checkedCheckboxes = document.querySelectorAll(".checkbox-item:checked");
     const subtotalElement = document.querySelector("#subtotal");
-
+    const totalElement = document.querySelector("#total");
+    const checkoutButton = document.querySelector("#checkoutButton");
+    const selectedItemsList = document.querySelector("#selectedItemsList");
+    
     let subtotal = 0;
+    const selectedItems = [];
+    selectedItemsList.innerHTML = "";
+    
     checkedCheckboxes.forEach(checkbox => {
-        const price = parseInt(checkbox.dataset.price);
-        const quantity = parseInt(checkbox.dataset.quantity);
+        const price = parseInt(checkbox.dataset.price) || 0;
+        const quantity = parseInt(checkbox.dataset.quantity) || 1;
+        const id = checkbox.dataset.id;
+        const name = checkbox.dataset.name;
+        
+        if (!id || !name || price <= 0 || quantity <= 0) {
+            console.warn("Data tidak valid untuk item dengan ID:", id);
+            return;
+        }
+        
         subtotal += price * quantity;
-    });
+        selectedItems.push({ id, name, harga: price, quantity });
+        updateCartItemStatus(id);
 
+        const listItem = document.createElement("li");
+        listItem.className = "flex justify-between py-4 selected-product";
+        listItem.dataset.id = id;
+        listItem.innerHTML = `
+            <div>
+                <h3 class="text-lg font-medium">${name}</h3>
+                <p class="text-sm text-gray-600">Harga: Rp ${price.toLocaleString()}</p>
+                <p class="text-sm text-gray-600">Jumlah: ${quantity}</p>
+            </div>
+        `;
+        selectedItemsList.appendChild(listItem);
+    });
+    
     subtotalElement.textContent = `Rp ${subtotal.toLocaleString()}`;
+    totalElement.value = `Rp ${subtotal.toLocaleString()}`;
+    checkoutButton.disabled = selectedItems.length === 0;
 }
 
-// Fungsi untuk mendapatkan produk yang dicentang
-function getCheckedProducts() {
-    const checkedCheckboxes = document.querySelectorAll(".checkbox-item:checked");
-    const selectedProducts = [];
+function updateCartItemStatus(id) {
+    fetch(`https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/cart-items/${id}/select`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ selected: true })
+    })
+    .then(response => response.json())
+    .then(result => console.log("Status barang diperbarui:", result))
+    .catch(error => console.error("Kesalahan saat memperbarui status barang:", error));
+}
 
+function checkout() {
+    const checkedCheckboxes = document.querySelectorAll(".checkbox-item:checked");
+    const selectedItems = [];
     checkedCheckboxes.forEach(checkbox => {
-        const productData = {
+        selectedItems.push({
             id: checkbox.dataset.id,
             name: checkbox.dataset.name,
-            price: parseInt(checkbox.dataset.price),
-            quantity: parseInt(checkbox.dataset.quantity)
-        };
-        selectedProducts.push(productData);
+            harga: parseInt(checkbox.dataset.price) || 0,
+            quantity: parseInt(checkbox.dataset.quantity) || 1
+        });
     });
 
-    return selectedProducts;
-}
-
-// Fungsi untuk memproses checkout
-function handleCheckout() {
-    const selectedProducts = getCheckedProducts();
-
-    if (selectedProducts.length === 0) {
-        alert("Pilih produk terlebih dahulu sebelum checkout.");
+    if (selectedItems.length === 0) {
+        alert("Pilih setidaknya satu produk untuk checkout.");
         return;
     }
 
-    console.log("Produk yang akan di-checkout:", selectedProducts);
-
-    fetch("https://example.com/checkout", {
+    fetch("https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/checkout", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ products: selectedProducts })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: selectedItems })
     })
-        .then(response => response.json())
-        .then(result => {
-            alert("Checkout berhasil!");
-            console.log("Respon dari server:", result);
-        })
-        .catch(error => {
-            console.error("Terjadi kesalahan saat checkout:", error);
-            alert("Gagal melakukan checkout. Silakan coba lagi.");
-        });
+    .then(response => response.json())
+    .then(result => alert("Checkout berhasil!"))
+    .catch(error => console.error("Kesalahan saat checkout:", error));
 }
+
+async function processPayment() {
+    try {
+        const idUser = localStorage.getItem("id");
+        if (!idUser) {
+            alert("ID User tidak ditemukan! Pastikan sudah login.");
+            return;
+        }
+
+        const selectedProducts = document.querySelectorAll(".selected-product");
+        const id_cartitem = Array.from(selectedProducts).map(product => product.dataset.id);
+        if (id_cartitem.length === 0) {
+            alert("Tidak ada produk yang dipilih!");
+            return;
+        }
+
+        // Mengambil total harga dengan cara yang benar
+        const totalHargaText = document.getElementById("total").value.replace(/[^0-9]/g, "");
+        const totalHarga = parseInt(totalHargaText) || 0;
+
+        // if (totalHarga <= 0) {
+        //     alert("Total harga tidak valid!");
+        //     return;
+        // }
+
+        const metodePembayaran = getSelectedPaymentMethod();
+        const buktiPembayaran = document.getElementById("payment-link").value || "N/A";
+        const alamat = document.getElementById("delivery-option").checked ? document.getElementById("alamat").value : "N/A";
+        if (!metodePembayaran) {
+            alert("Pilih metode pembayaran terlebih dahulu!");
+            return;
+        }
+
+        const requestData = {
+            id_user: idUser,
+            id_cartitem,
+            total_harga: totalHarga,
+            created_at: new Date().toISOString(),
+            metode_pembayaran: metodePembayaran,
+            buktiPembayaran,
+            status: "Pending",
+            alamat
+        };
+        console.log("Mengirim data transaksi:", requestData);
+
+        
+    }
+    catch (error) {
+        console.error("Error processing payment:", error);
+        alert("Gagal memproses pembayaran.");
+    }        
+}
+
+function getSelectedPaymentMethod() {
+    const checkboxes = document.querySelectorAll(".payment-checkbox");
+    for (const checkbox of checkboxes) {
+        if (checkbox.checked) {
+            return checkbox.value;
+        }
+    }
+    return null;
+}
+
 
 // Panggil fungsi untuk mengambil dan merender data
 fetchAndRenderData();
@@ -213,29 +302,25 @@ fetchAndRenderData();
 
 
 
-// Fungsi untuk menambahkan event listener pada tombol update
-function addUpdateEventListeners() {
-    const updateButtons = document.querySelectorAll(".bg-blue-500");
-
-    updateButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            const productId = button.getAttribute("data-id");
-            updateQuantity(productId); // Panggil fungsi updateQuantity
-        });
-    });
+function handleUpdateQuantity(button) {
+    const productId = button.getAttribute("data-id");
+    updateQuantity(productId);
 }
 
-// Fungsi untuk mengupdate jumlah produk
 function updateQuantity(productId) {
     const quantityInput = document.getElementById(`quantity-${productId}`);
-    const newQuantity = parseInt(quantityInput.value);
+    if (!quantityInput) {
+        alert("Input jumlah produk tidak ditemukan.");
+        return;
+    }
 
+    const newQuantity = parseInt(quantityInput.value);
     if (isNaN(newQuantity) || newQuantity < 1) {
         alert("Jumlah produk tidak valid.");
         return;
     }
 
-    const targetUrl = `https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/updatechartitem`;
+    const targetUrl = "https://ats-714220023-serlipariela-38bba14820aa.herokuapp.com/updatechartitem";
 
     const dataToUpdate = {
         id_produk: productId,
@@ -243,26 +328,26 @@ function updateQuantity(productId) {
     };
 
     fetch(targetUrl, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(dataToUpdate)
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Gagal mengupdate produk. Periksa apakah ID produk valid.");
-            }
-            return response.json();
-        })
-        .then(result => {
-            alert(result.message || "Jumlah produk berhasil diupdate.");
-            fetchAndRenderData(); // Memperbarui keranjang setelah quantity diupdate
-        })
-        .catch(error => {
-            console.error("Error updating quantity:", error);
-            alert("Gagal mengupdate jumlah produk.");
-        });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Gagal mengupdate produk. Periksa apakah ID produk valid.");
+        }
+        return response.json();
+    })
+    .then(result => {
+        alert(result.message || "Jumlah produk berhasil diupdate.");
+        fetchAndRenderData();
+    })
+    .catch(error => {
+        console.error("Error updating quantity:", error);
+        alert("Gagal mengupdate jumlah produk.");
+    });
 }
 
 // Fungsi untuk menghapus data berdasarkan ID
@@ -300,10 +385,6 @@ document.getElementById("closeKeranjang").addEventListener("click", () => {
     document.getElementById("keranjang").classList.add("hidden");
 });
 
-// Tambahkan event listener untuk tombol checkout
-document.getElementById("checkoutButton").addEventListener("click", () => {
-    alert("Fitur checkout belum tersedia.");
-});
 
 // Muat data saat halaman dimuat
 document.addEventListener("DOMContentLoaded", () => {

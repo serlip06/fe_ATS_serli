@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Homepage_admin</title>
+    <title>Dashboard - Kelola Pesanan</title>
+
+
+      <!-- Favicon -->
+   <link rel="icon" type="image/png" sizes="32x32" href="https://cdn-icons-png.flaticon.com/512/4312/4312094.png">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -14,7 +19,7 @@
     <script src="../js/main.js"></script>
     <script type="module" src="../js/fetch.js"></script>
 
-    <link rel="icon" href="assets/img/logo.jpg" type="image/x-icon">
+ 
 
     <!-- Path Folder -->
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -35,6 +40,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Nabla&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
 </head>
+<style>
+  .status-dropdown {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .kirim-btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .kirim-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .kirim-btn:active {
+    transform: scale(0.95);
+  }
+</style>
 <body>
     
 <!-- tailwind.config.js -->
@@ -258,46 +285,29 @@
                     
                         <div class="overflow-x-auto relative">
                           <table class="table-auto w-full border-collapse border border-gray-300 rounded-lg overflow-hidden">
-                            <thead>
-                              <tr class="bg-blue-100">
-                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">ORDER ID</th>
-                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">DATE</th>
-                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">PRICE</th>
-                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">BUKTI PEMBAYARAN</th>
-                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">ALAMAT</th>
-                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">STATUS</th>
-                                <th class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">ACTION</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <!-- Contoh baris 1 -->
-                              <tr class="hover:bg-gray-100">
-                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">ORD001</td>
-                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">2025-01-20</td>
-                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">$100</td>
-                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">
-                                  <a href="#" class="text-blue-500 hover:underline">View</a>
-                                </td>
-                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">123 Main Street</td>
-                                <td class="border border-gray-300 px-4 py-2 text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">
-                                  <select class="border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <option>✔ Completed</option>
-                                    <option>⏳ Pending</option>
-                                    <option>❌ Dibatalkan</option>
-                                  </select>
-                                </td>
-                                <td class="border border-gray-300 px-4 py-2 text-center text-black font-sans font-semibold my-4" style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: bold;">
-                                  <button class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full shadow-lg transform transition duration-300 hover:scale-110 flex items-center gap-2">
-                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="hidden md:inline"></span>
-                                    <svg class="w-5 h-5 md:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                  </button>
-                                </td>
-                              </tr>
+                            <table class="w-full border-collapse border border-gray-300 bg-white">
+                              <thead>
+                                  <tr>
+                                      <th class="border border-gray-300 px-4 py-2">ORDER ID</th>
+                                      <th class="border border-gray-300 px-4 py-2">DATE</th>
+                                      <th class="border border-gray-300 px-4 py-2">ID USER</th>
+                                  
+                                      <th class="border border-gray-300 px-4 py-2">ITEM</th>
+                                      <th class="border border-gray-300 px-4 py-2">PRICE</th>
+                                      <th class="border border-gray-300 px-4 py-2">METODE PEMBAYARAN</th>
+                                      <th class="border border-gray-300 px-4 py-2">BUKTI PEMBAYARAN</th>
+                                      <th class="border border-gray-300 px-4 py-2">ALAMAT</th>
+                                      <th class="border border-gray-300 px-4 py-2">STATUS</th>
+                                      <th class="border border-gray-300 px-4 py-2">ACTION</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="transaksi-table">
+                                <tr>
+                                    <td colspan="11" class="text-center py-4">Memuat data...</td>
+                                </tr>
+                            </tbody>
+                            
+                          </table>
                             </tbody>
                           </table>
                         </div>
@@ -427,6 +437,8 @@
 
 
 </div>
+<script src="../js/controller/get_transaksi.js"></script>
+<script src="../js/temp/pembayaran.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="../js/charts-demo.js"></script>
 <script src="../js/controller/delete.js"></script>

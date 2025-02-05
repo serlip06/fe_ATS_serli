@@ -108,15 +108,15 @@
       
       </div>
       <nav class="mt-6 space-y-4">
-        <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition duration-200">
+        <a href="#" id="toggle-pesanan" class="flex items-center px-6 py-3 hover:bg-gray-100 transition duration-200">
           <span class="material-icons text-blue-700 mr-3">store</span>
           <span class="font-medium">Pesanan</span> 
-        </a>
+      </a>
         
-        <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition duration-200">
+        <!-- <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition duration-200">
           <span class="material-icons text-blue-700 mr-3">list_alt</span>
           <span class="font-medium">Riwayat Pesanan</span>
-        </a>
+        </a> -->
         <a href="#keranjang" class="flex items-center px-6 py-3 hover:bg-gray-100 transition duration-200" id="toggleKeranjang">
           <span class="material-icons text-blue-700 mr-3">shopping_cart</span>
           <span class="font-medium">Keranjang</span>
@@ -178,101 +178,36 @@
 
 
 <!-- My Orders Section -->
-<div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-  <div class="mx-auto max-w-5xl">
-    <div class="gap-4 sm:flex sm:items-center sm:justify-between">
-      <h2 class="text-2xl font-semibold text-gray-900 dark:text-black sm:text-3xl">My Orders</h2>
+<!-- Section My Orders -->
+<div class="mx-auto max-w-screen-xl px-4 2xl:px-0" id="my-orders-section" style="display: none;">
+  <div class="mx-auto max-w-5xl bg-white shadow-lg rounded-lg p-6">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-semibold text-gray-900 dark:text-black sm:text-3xl">📦 My Orders</h2>
     </div>
 
-    <div class="mt-6 flow-root sm:mt-8">
-      <div class="divide-y divide-gray-100 dark:divide-gray-500">
-        <!-- Order 1 -->
-        <div class="flex flex-wrap items-center gap-y-4 py-6 rounded-lg shadow-xl bg-white bg-yellow-200 transition-all hover:shadow-2xl hover:scale-105">
-          <dl class="w-full sm:w-1/2 lg:w-auto lg:flex-1 flex justify-between">
-            <div class="flex-1">
-              <dt class="text-base font-medium text-gray-500 dark:text-gray-600">Order ID:</dt>
-              <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                <a href="#" class="hover:underline text-blue-600 dark:text-blue-400">#FWB127364372</a>
-              </dd>
-            </div>
-            <div class="flex-1">
-              <dt class="text-base font-medium text-gray-500 dark:text-gray-600">Date:</dt>
-              <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text">20.12.2023</dd>
-            </div>
-            <div class="flex-1">
-              <dt class="text-base font-medium text-gray-500 dark:text-gray-600">Price:</dt>
-              <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text">$4,756</dd>
-            </div>
-            <div class="flex-1">
-              <dt class="text-base font-medium text-gray-500 dark:text-gray-600">Status:</dt>
-              <dd class="me-2 mt-1.5 inline-flex items-center rounded bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300">
-                <svg class="me-1 h-3 w-3 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Completed
-              </dd>
-            </div>
-          </dl>
-
-          <div class="w-full grid sm:grid-cols-2 lg:flex lg:w-64 lg:items-center lg:justify-end gap-4">
-            <button type="button" class="w-full rounded-lg border border-red-700 px-4 py-2 text-center text-sm font-medium text-red-700 hover:bg-red-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:border-red-500 dark:text-red-500 dark:hover:bg-red-600 dark:hover:text-white dark:focus:ring-red-900 lg:w-auto transition-all hover:scale-105">
-              Cancel order
-            </button>
-            <a href="#" class="w-full inline-flex justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 lg:w-auto transition-all hover:scale-105">
-              View details
-            </a>
-          </div>
-        </div>
-      </div>
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse rounded-lg overflow-hidden shadow-md">
+        <thead>
+          <tr class="bg-indigo-600 text-white text-left">
+            <th class="px-4 py-3">ID Transaksi</th>
+            <th class="px-4 py-3">Tanggal</th>
+           
+            <th class="px-4 py-3">Total Harga</th>
+            <th class="px-4 py-3">Metode Pembayaran</th>
+            <th class="px-4 py-3">Alamat</th>
+            <th class="px-4 py-3">Status</th>
+          </tr>
+        </thead>
+        <tbody id="transaksi-table" class="bg-white divide-y divide-gray-200">
+          <tr>
+            <td colspan="7" class="text-center py-6 text-gray-500">⏳ Memuat data...</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-
-    <div class="mt-6 flow-root sm:mt-8">
-      <div class="divide-y divide-gray-100 dark:divide-gray-500">
-        <!-- Order 1 -->
-        <div class="flex flex-wrap items-center gap-y-4 py-6 rounded-lg shadow-xl bg-white bg-yellow-200 transition-all hover:shadow-2xl hover:scale-105">
-          <dl class="w-full sm:w-1/2 lg:w-auto lg:flex-1 flex justify-between">
-            <div class="flex-1">
-              <dt class="text-base font-medium text-gray-500 dark:text-gray-600">Order ID:</dt>
-              <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                <a href="#" class="hover:underline text-blue-600 dark:text-blue-400">#FWB127364372</a>
-              </dd>
-            </div>
-            <div class="flex-1">
-              <dt class="text-base font-medium text-gray-500 dark:text-gray-600">Date:</dt>
-              <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text">20.12.2023</dd>
-            </div>
-            <div class="flex-1">
-              <dt class="text-base font-medium text-gray-500 dark:text-gray-600">Price:</dt>
-              <dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text">$4,756</dd>
-            </div>
-            <div class="flex-1">
-              <dt class="text-base font-medium text-gray-500 dark:text-gray-600">Status:</dt>
-              <dd class="me-2 mt-1.5 inline-flex items-center rounded bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300">
-                <svg class="me-1 h-3 w-3 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Completed
-              </dd>
-            </div>
-          </dl>
-
-          <div class="w-full grid sm:grid-cols-2 lg:flex lg:w-64 lg:items-center lg:justify-end gap-4">
-            <button type="button" class="w-full rounded-lg border border-red-700 px-4 py-2 text-center text-sm font-medium text-red-700 hover:bg-red-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:border-red-500 dark:text-red-500 dark:hover:bg-red-600 dark:hover:text-white dark:focus:ring-red-900 lg:w-auto transition-all hover:scale-105">
-              Cancel order
-            </button>
-            <a href="#" class="w-full inline-flex justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 lg:w-auto transition-all hover:scale-105">
-              View details
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-   
   </div>
 </div>
+
 
 </div>
 
@@ -303,14 +238,28 @@
             <!-- Footer -->
             <div class="border-t px-4 py-4">
               <div class="flex justify-between text-base font-medium text-gray-800">
-                <p>Subtotal</p>
-                <p id="subtotal">Rp 0</p>
-              </div>
+              <p>Subtotal</p>
+              <p id="subtotal">Rp 0</p>
+            </div>
+
               <div class="mt-4">
-                <button id="checkoutButton" class="w-full bg-indigo-600 text-white rounded-md py-2 hover:bg-indigo-700">
-                  Checkout
-                </button>
+                <!-- Tombol Checkout dengan indikator loading -->
+                <div class="mt-4">
+                  <!-- Tombol Checkout dengan indikator loading -->
+                  <button id="checkoutButton" class="w-full bg-indigo-600 text-white rounded-md py-2 hover:bg-indigo-700 relative">
+                    Checkout
+                    <!-- Indikator loading yang tersembunyi -->
+                    <span id="loadingIndicator" class="absolute left-1/2 transform -translate-x-1/2 text-white hidden">
+                      <svg class="w-5 h-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 1 0 16 0 8 8 0 0 0-16 0Z"></path>
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+                
               </div>
+              
               <div class="mt-2 text-sm text-center text-gray-500">
                 <p>atau <a href="./pagemakan.html" class="text-indigo-600 hover:text-indigo-500">Lanjutkan Belanja</a></p>
               </div>
@@ -354,7 +303,7 @@
             <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
               <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                 <div class="flex items-start justify-between">
-                  <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Your Cart</h2>
+                  <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Selamat Berbelanja!</h2>
                   <div class="ml-3 flex h-7 items-center">
                     <button type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500" id="closePembayaran">
                       <span class="absolute -inset-0.5"></span>
@@ -366,157 +315,95 @@
                   </div>
                 </div>
 
-                <!-- Cart Items -->
-                <div class="mt-8">
-                  <div class="flow-root">
-                    <ul role="list" class="-my-6 divide-y divide-gray-200">
-                      <li class="flex py-6">
-                        <div class="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                          <img src="https://tailwindui.com/plus/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Product image" class="size-full object-cover">
-                        </div>
-                        <div class="ml-4 flex flex-1 flex-col">
-                          <div class="flex justify-between text-base font-medium text-gray-900">
-                            <h3><a href="#">Product Name</a></h3>
-                            <p class="ml-4">$90.00</p>
-                          </div>
-                          <div class="flex flex-1 items-end justify-between text-sm">
-                            <p class="text-gray-500">Qty 1</p>
-                            <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-      <!-- Payment Details -->
-<div class="mt-10">
-  <h3 class="text-lg font-medium text-gray-900">Payment Details</h3>
-  <div class="mt-4 space-y-4">
-    <div>
-      <label for="payment-method" class="block text-sm font-medium text-gray-700">Payment Method</label>
-      <div class="custom-select">
-       <div class="custom-select">
-    
-        <div class="select-items select-hide flex space-x-4">
-          <!-- DANA -->
-          <div data-value="dana" class="payment-option flex items-center">
-            <input type="checkbox" id="dana-checkbox" class="payment-checkbox w-5 h-5" onclick="toggleInfo('dana')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png" alt="DANA Logo" class="w-10 h-auto ml-2">
-            <span class="ml-2"></span>
-        </div>
-        <div id="dana-info" class="hidden ml-8 p-4 rounded-lg border border-blue-300 bg-blue-50 text-sm text-gray-700 shadow-md">
-          <div class="flex items-center space-x-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1 4h-1m-1-6h1V9h1m-2 3h1m4.5-4.5A2.5 2.5 0 0117.5 10m0 0a2.5 2.5 0 11-5 0m5 0v6m-5 0v-6m0 6a2.5 2.5 0 005 0m-5 0a2.5 2.5 0 005 0" />
-              </svg>
-              <h3 class="font-semibold text-blue-600">Informasi DANA</h3>
-          </div>
-          <p class="mt-2">Nomor DANA: <span class="font-medium text-gray-900">0812-3456-7890</span></p>
-          <div class="mt-2">
-              <button class="inline-block px-3 py-1 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none">
-                  Salin Nomor
-              </button>
-          </div>
-      </div>
-      
-
-        <!-- BNI -->
-        <div data-value="bni" class="payment-option flex items-center">
-            <input type="checkbox" id="bni-checkbox" class="payment-checkbox w-5 h-5" onclick="toggleInfo('bni')">
-            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/2560px-BNI_logo.svg.png" alt="BNI Logo" class="w-10 h-auto ml-2">
-            <span class="ml-2"></span>
-        </div>
-        <div id="bni-info" class="hidden ml-8 p-4 rounded-lg border border-orange-300 bg-orange-50 text-sm text-gray-700 shadow-md">
-          <div class="flex items-center space-x-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2l4-4m7-2a9 9 0 11-18 0a9 9 0 0118 0z" />
-              </svg>
-              <h3 class="font-semibold text-orange-600">Informasi Rekening BNI</h3>
-          </div>
-          <p class="mt-2">Rekening BNI: <span class="font-medium text-gray-900">123-456-7890</span></p>
-          <div class="mt-2">
-              <button class="inline-block px-3 py-1 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 focus:ring-2 focus:ring-orange-400 focus:outline-none">
-                  Salin Rekening
-              </button>
-          </div>
-      </div>
-      
-        <script>
-          function toggleInfo(paymentType) {
-              // Ambil elemen informasi berdasarkan tipe pembayaran
-              const infoElement = document.getElementById(`${paymentType}-info`);
-              const checkbox = document.getElementById(`${paymentType}-checkbox`);
-      
-              // Tampilkan atau sembunyikan informasi berdasarkan status checkbox
-              if (checkbox.checked) {
-                  infoElement.classList.remove('hidden');
-              } else {
-                  infoElement.classList.add('hidden');
-              }
-          }
-
-          document.querySelector("#dana-info button").addEventListener("click", () => {
-            navigator.clipboard.writeText("0812-3456-7890").then(() => {
-                alert("Nomor DANA berhasil disalin!");
-            }).catch(err => {
-                console.error("Gagal menyalin teks:", err);
-            });
-        });
-        
-      </script>
-        <div data-value="cash" class="payment-option flex items-center">
-            <input type="checkbox" class="payment-checkbox w-5 h-5">
-            <img src="https://images.seeklogo.com/logo-png/38/1/cash-app-logo-png_seeklogo-380008.png" alt="Cash Logo" class="w-6 h-auto ml-2">
-            <span class="ml-2"></span>
-        </div>
-        
-      </div>      
-    </div>
-
-
-<!-- Tempat untuk menampilkan informasi tambahan -->
-<div id="payment-info" style="margin-top: 10px;"></div>
-    </div>
-    </div>
-    <div>
-      <label for="total" class="block text-sm font-medium text-gray-700">Total Amount</label>
-      <input type="text" id="total" name="total" value="$262.00" readonly class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-    </div>
-
-    <!-- Bukti Pembayaran -->
-    <div>
-      <label for="payment-proof" class="block text-sm font-medium text-gray-700">Bukti Pembayaran</label>
-      <input type="file" id="payment-proof" name="payment-proof" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:bg-gray-50 file:text-indigo-700 hover:file:bg-indigo-100">
-    </div>
+              <!-- Cart Items -->
+    <div class="mt-8">
+      <h2 class="text-xl font-bold mb-2">Produk yang Dipilih</h2>
+      <div class="flow-root bg-gray-50 p-4 rounded-lg shadow-sm">
+          <ul id="selectedItemsList" role="list" class="-my-6 divide-y divide-gray-200">
+              <!-- Produk checkout akan dimasukkan di sini -->
+          </ul>
   </div>
+
+  <!-- Payment Details -->
+  <div class="mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+        <svg class="w-6 h-6 text-indigo-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zm-6 8h12M6 16v4m12-4v4"></path>
+        </svg>
+        Payment Details
+    </h3>
+
+    <!-- Metode Pembayaran -->
+    <div class="flex space-x-4 mt-2">
+      <!-- DANA -->
+      <label class="flex flex-col items-center cursor-pointer p-3 border rounded-lg hover:bg-indigo-50 transition">
+          <input type="radio" name="paymentMethod" class="payment-checkbox hidden" value="dana">
+          <img src="https://www.linkqu.id/wp-content/uploads/2021/07/filedownload.png" 
+               alt="DANA" class="w-7 h-7">
+      </label>
+  
+      <!-- BNI -->
+      <label class="flex flex-col items-center cursor-pointer p-3 border rounded-lg hover:bg-indigo-50 transition">
+          <input type="radio" name="paymentMethod" class="payment-checkbox hidden" value="bni">
+          <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1024px-BNI_logo.svg.png" 
+               alt="BNI" class="w-7 h-7">
+      </label>
+  
+      <!-- Cash -->
+      <label class="flex flex-col items-center cursor-pointer p-3 border rounded-lg hover:bg-indigo-50 transition">
+          <input type="radio" name="paymentMethod" class="payment-checkbox hidden" value="cash">
+          <img src="https://cdn-icons-png.flaticon.com/512/2203/2203159.png" 
+               alt="Cash" class="w-7 h-7">
+      </label>
+  </div>
+  
+    </div>
+
+   <!-- Total Amount -->
+<label for="total" class="block mt-4 text-sm font-medium text-gray-700">Total Amount</label>
+<div class="relative mt-1">
+    <input type="text" id="total" name="total" value="Rp 0" readonly 
+           class="w-full px-4 py-2 border rounded-md bg-gray-100 text-gray-700 font-semibold text-lg">
+    <span class="absolute right-4 top-2 text-gray-500">Rp</span>
 </div>
 
-<!-- Delivery Option -->
-<div class="mt-6">
-  <label class="inline-flex items-center text-sm font-medium text-gray-700">
-    <input type="checkbox" id="delivery-option" class="form-checkbox text-indigo-600">
-    <span class="ml-2">Diantar?</span>
-  </label>
 
-  <!-- Alamat text box, hidden by default -->
-  <div id="alamat-container" class="mt-4 hidden">
-    <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat Pengiriman</label>
-    <textarea id="alamat" name="alamat" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
-  </div>
+    <!-- Link Bukti Pembayaran -->
+    <label for="payment-link" class="block mt-4 text-sm font-medium text-gray-700">Link Bukti Pembayaran</label>
+    <input type="url" id="payment-link" name="payment-link" placeholder="Masukkan link bukti pembayaran" 
+           class="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+
+    <!-- Delivery Option -->
+    <div class="mt-6">
+        <label class="flex items-center cursor-pointer">
+            <input type="checkbox" id="delivery-option" class="hidden">
+            <span class="w-6 h-6 inline-block border rounded-md flex items-center justify-center transition bg-gray-200">
+                <svg id="check-icon" class="w-4 h-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L9 11.586l6.293-6.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+            </span>
+            <span class="ml-2 text-gray-800 font-medium">Diantar?</span>
+        </label>
+
+        <div id="alamat-container" class="mt-4 hidden transition-all duration-300">
+            <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat Pengiriman</label>
+            <textarea id="alamat" name="alamat" rows="3" 
+                      class="mt-1 w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
+        </div>
+    </div>
 </div>
 
-<!-- Checkout Button -->
-<div class="border-t border-gray-200 px-4 py-6 sm:px-6">
-  <div class="mt-6">
-    <button class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
-      Confirm Pesanan Anda
-    </button>
+
+  <!-- Checkout Button -->
+  <div class="border-t px-4 py-6">
+      <button id="confirmCheckout" class="w-full bg-indigo-600 text-white py-3">Confirm Pesanan Anda</button>
   </div>
-  <div class="mt-4 text-sm text-gray-500">
-    <p>Please ensure your payment details are correct before proceeding.</p>
-  </div>
-</div>
+
+  <script>
+      document.getElementById("delivery-option").addEventListener("change", function() {
+          document.getElementById("alamat-container").classList.toggle("hidden", !this.checked);
+      });
+  </script>
 
 <script>
   // Tambahkan event listener untuk checkbox "Diantar?"
@@ -540,8 +427,9 @@
       </div>
     </div>
   </div>
+  </div>
  <!-- ===== footer ===== -->
- <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+ <div class= " px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
   <div class="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
     <div class="md:max-w-md lg:col-span-2">
       <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
@@ -871,10 +759,94 @@
   
   </script>
   
+  <script>
+    // Fungsi untuk menghitung subtotal berdasarkan checkbox yang dicentang
+function updateSubtotal() {
+  const checkedCheckboxes = document.querySelectorAll(".checkbox-item:checked");
+  const subtotalElement = document.querySelector("#subtotal");
+  const totalInput = document.querySelector("#total");
+
+  let subtotal = 0;
+  const selectedItems = [];
+
+  checkedCheckboxes.forEach(checkbox => {
+      const price = parseInt(checkbox.dataset.price) || 0;  // Pastikan harga valid
+      const quantity = parseInt(checkbox.dataset.quantity) || 1; // Pastikan kuantitas valid
+      const id = checkbox.dataset.id; // Ambil ID dari data-attribute
+
+      // Periksa validitas ID, harga, dan kuantitas
+      if (!id || price <= 0 || quantity <= 0) {
+          console.warn("Data tidak valid untuk item dengan ID:", id);
+          return; // Lewatkan item ini jika ada data yang tidak valid
+      }
+
+      subtotal += price * quantity;
+
+      // Menambahkan item yang dipilih untuk ditampilkan di console
+      selectedItems.push({
+          id: id,
+          harga: price,
+          quantity: quantity
+      });
+  });
+
+  // Tampilkan subtotal dalam elemen teks
+  subtotalElement.textContent = `Rp ${subtotal.toLocaleString()}`;
+
+  // Tampilkan subtotal dalam input field dengan format mata uang
+  totalInput.value = `Rp ${subtotal.toLocaleString()}`;
+}
+
+// Menambahkan event listener ke setiap checkbox untuk menghitung subtotal
+function addCheckboxListeners() {
+  const checkboxes = document.querySelectorAll(".checkbox-item");
+  checkboxes.forEach(checkbox => {
+      checkbox.addEventListener("change", updateSubtotal);
+  });
+}
+
+// Panggil fungsi untuk menambahkan event listener
+addCheckboxListeners();
+
+  </script>
+  <script>
+    document.getElementById('toggle-pesanan').addEventListener('click', function(event) {
+      event.preventDefault(); // Mencegah link untuk pergi ke halaman lain
+  
+      // Ambil elemen section yang akan ditoggle
+      const myOrdersSection = document.getElementById('my-orders-section');
+      
+      // Toggle visibilitas section
+      if (myOrdersSection.style.display === 'none' || myOrdersSection.style.display === '') {
+          myOrdersSection.style.display = 'block'; // Menampilkan section
+      } else {
+          myOrdersSection.style.display = 'none'; // Menyembunyikan section
+      }
+  });
+  
+  </script>
+  <script>
+    document.getElementById("delivery-option").addEventListener("change", function () {
+      const alamatContainer = document.getElementById("alamat-container");
+      const checkIcon = document.getElementById("check-icon");
+  
+      if (this.checked) {
+          alamatContainer.classList.remove("hidden");
+          checkIcon.classList.remove("hidden");
+          this.nextElementSibling.classList.add("bg-indigo-500");
+      } else {
+          alamatContainer.classList.add("hidden");
+          checkIcon.classList.add("hidden");
+          this.nextElementSibling.classList.remove("bg-indigo-500");
+      }
+  });
+  
+  </script>
  
   
 
-
+  <script src="../js/temp/pembayaran.js"></script>
+  <script src="../js/controller/get_user_transaksi.js"></script>
   <script src="../js/temp/keranjang.js"></script>
   <script src="../js/controller/delete_keranjang.js"></script>
 
